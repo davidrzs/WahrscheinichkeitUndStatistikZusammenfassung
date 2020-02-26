@@ -80,6 +80,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathcal{F}}
 %\newcommand{\cos}{\operatorname{cos}}
 %\newcommand{\sin}{\operatorname{sin}}
 %\newcommand{\exp}{\operatorname{exp}}
@@ -144,6 +145,78 @@
 
 
 \begin{multicols}{3}
+
+
+
+
+
+\begin{method}{Wahrscheinlichkeitsraum}
+	Wir definieren $(\Omega, \mathcal{F}, P)$ einen Wahrscheinlichkeitsraum, wobei $\Omega$ die Ereignismenge aus Elementarereignissen ist, $\F \subseteq 2^\Omega$ eine $\sigma$-Algebra und $P$ ein Wahrscheinlichkeitsmass.
+\end{method}
+
+\begin{method}{$\sigma$-Algebra}
+	Wir nennen ein Mengensystem $\F\subseteq 2^\Omega$ eine $\sigma$-Algebra falls:
+	\begin{itemize}
+		\item $\Omega \in \F$
+		\item $\forall A \in \F : A^c \in \F$
+		\item für jede Folge $(A_n)_{n\in\N}$ mit $A_n \in \F$ so ist auch $\bigcup_{n=1}^\infty A_n \in \F $
+	\end{itemize}
+
+Sicherlich ist somit zum Beispiel die Potenzmenge $2^\Omega$ eine $\sigma$-Algebra.
+\end{method}
+
+\begin{method}{Wahrscheinlichkeitsmass} Wir definieren eine Abbildung $P: \F \to [0,1]$. Wir nenne $P[A]\in[0,1]$ die Wahrscheinlichkeit, dass $A$ eintritt. Die geforderten Axiome sind:
+	\begin{itemize}
+		\item $P[A]\geq 0 \ \forall A \in \F$
+		\item $P[\Sigma] = 1$
+		\item $P\left[ \bigcup_{i=1}^{\infty} A_i \right] = \sum_{i=1}^{\infty}P[A_i]$, sofern die $A_i \in \F$ paarweise disjunkt sind ($A_i \cap A_k = \varnothing$ wenn $i \neq k$) 
+	\end{itemize}
+\end{method}
+
+\textbf{Beispiele (Formale Definitionen von Wahrscheinlichkeitsräumen)}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+%    _               _           _     
+%   /_\  _ __   __ _| |_   _ ___(_)___ 
+%  //_\\| '_ \ / _` | | | | / __| / __|
+% /  _  \ | | | (_| | | |_| \__ \ \__ \
+% \_/ \_/_| |_|\__,_|_|\__, |___/_|___/
+%                       |___/           
 
 
 
