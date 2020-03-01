@@ -85,7 +85,6 @@
 %\newcommand{\sin}{\operatorname{sin}}
 %\newcommand{\exp}{\operatorname{exp}}
 
-\newtheorem{thm}{Thm}[section]
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage[framemethod=TikZ]{mdframed}
@@ -109,6 +108,15 @@
 	{ 
 	\end{mdframed}
 }
+
+\newenvironment{thm}[1]{\begin{mdframed}[backgroundcolor=pink!50,innertopmargin=15pt, innerbottommargin=15pt, nobreak=false]
+		\textbf{#1 }
+	}
+	{ 
+	\end{mdframed}
+}
+
+
 
 \newenvironment{trick}[1]{\begin{mdframed}[backgroundcolor=PineGreen!50,innertopmargin=15pt, innerbottommargin=15pt, nobreak=true]
 			\textbf{#1 }
@@ -148,7 +156,7 @@
 
 
 
-
+\section*{Wahrscheinlichkeitsrechnung}
 
 \begin{method}{Wahrscheinlichkeitsraum}
 	Wir definieren $(\Omega, \mathcal{F}, P)$ einen Wahrscheinlichkeitsraum, wobei $\Omega$ die Ereignismenge aus Elementarereignissen ist, $\F \subseteq 2^\Omega$ eine $\sigma$-Algebra und $P$ ein Wahrscheinlichkeitsmass.
@@ -165,10 +173,10 @@
 Sicherlich ist somit zum Beispiel die Potenzmenge $2^\Omega$ eine $\sigma$-Algebra.
 \end{method}
 
-\begin{method}{Wahrscheinlichkeitsmass} Wir definieren eine Abbildung $P: \F \to [0,1]$. Wir nenne $P[A]\in[0,1]$ die Wahrscheinlichkeit, dass $A$ eintritt. Die geforderten Axiome sind:
+\begin{method}{Wahrscheinlichkeitsmass} Wir definieren eine Abbildung $P: \F \to [0,1]$. Wir nennen $P[A]\in[0,1]$ die Wahrscheinlichkeit, dass $A$ eintritt. Die geforderten Kolmogorov Axiome sind:
 	\begin{itemize}
 		\item $P[A]\geq 0 \ \forall A \in \F$
-		\item $P[\Sigma] = 1$
+		\item $P[\Omega] = 1$
 		\item $P\left[ \bigcup_{i=1}^{\infty} A_i \right] = \sum_{i=1}^{\infty}P[A_i]$, sofern die $A_i \in \F$ paarweise disjunkt sind ($A_i \cap A_k = \varnothing$ wenn $i \neq k$) 
 	\end{itemize}
 \end{method}
@@ -176,11 +184,69 @@ Sicherlich ist somit zum Beispiel die Potenzmenge $2^\Omega$ eine $\sigma$-Algeb
 \textbf{Beispiele (Formale Definitionen von Wahrscheinlichkeitsräumen)}
 
 
+\subsection*{Bedingte Wahrscheinlichkeit}
+
+\begin{method}{Bedingte Wahrscheinlichkeit}
+Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ unter der Bedingung, dass $A$ eintritt, (gegeben $A$) ist definiert als:
+
+\begin{align*}
+	P[B|A] &= \frac{P[B \cap A]}{P[A]}
+\end{align*}
+
+\end{method}
+
+\begin{thm}{Multiplikationsregel}
+	Seien $A_1,\ldots A_n$ Ereignisse mit $P[A_i]>0$ (div by $0$ Problem), dann gilt:
+	
+	\begin{align*}
+		&P[A_1 \cap A_2 \cap \cdots \cap A_n] = \\
+		&P[A_1] \cdot P[A_2 | A_1] \cdot P[A_3|A_1 \cap A_2] \cdot \ldots \cdot P[A_n | A_1 \cap \cdots \cap A_{n-1}]
+	\end{align*}
+\end{thm}
+
+\begin{thm}{Satz der totalen Wahrscheinlichkeit}
+	 Seien $B_1, \ldots B_n$ eine Zerlegung von $\Omega$ (d.h. $\bigcup_{i=1}^n B_i = \Omega$ und $B_i \cap B_j = \varnothing$ für $i\neq j$), so gilt für ein beliebiges Ereignis $A$:
+	 
+	 \begin{align*}
+	 	P[A] &= \sum_{i=1}^{n} P[A\cap B_i] = \sum_{i=1}^{n} P[A|B_i]\cdot P[B_i]
+	 \end{align*}
+	 
+	 Insbesondere folgt daraus:
+	 
+	 \begin{align*}
+	 	P[A] &= P[A\cap B] + P[A \cap B^c] = P[A|B]\cdot P[B] + P[A|B^c]\cdot P[B^c]
+	 \end{align*}
+\end{thm}
 
 
+\begin{thm}{Bayes Theorem}
+	Wenn $P[A],P[B].P[B^c]> 0$ so folgt:
+	
+	\begin{align*}
+		P[B|A] = \frac{P[A\cap B]}{P[A]} &= \frac{P[A|B]\cdot P[B]}{P[A|B]\cdot P[B] + P[A|B^c]\cdot P[B^c]}
+	\end{align*}
+	
+	respektive wenn $B_1, \ldots B_n$ eine Zerlegung von $\Omega$ mit $P[B_i]>0 \  \forall i$, dann gilt für ein Ereignis $A$ mit $P[A]>0$:
+	
+	\begin{align*}
+		P[B_k|A] = \frac{P[A\cap B_k]}{P[A]} &= \frac{P[A|B_k]\cdot P[B_k]}{\sum_{i=1}^{n} P[A|B_i] \cdot P[B_i] }
+	\end{align*}
+\end{thm}
 
 
+\subsection*{Unabhängigkeit}
 
+\begin{method}{Unabhängigkeit}
+	
+	Wir nenne zwei Ereignisse $A$, $B$ unabhängig falls
+	
+	\begin{align*}
+		P[A\cap B] &= P[A] \cdot P[B]
+	\end{align*}
+	
+\end{method}
+
+\TODO{add more stuff}
 
 
 
