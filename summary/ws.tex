@@ -81,6 +81,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\F}{\mathcal{F}}
+\newcommand{\X}{\mathcal{X}}
 %\newcommand{\cos}{\operatorname{cos}}
 %\newcommand{\sin}{\operatorname{sin}}
 %\newcommand{\exp}{\operatorname{exp}}
@@ -88,7 +89,7 @@
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage[framemethod=TikZ]{mdframed}
-\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!10,innertopmargin=15pt, innerbottommargin=15pt, nobreak=true]
+\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!10,innertopmargin=15pt, innerbottommargin=15pt]
 		\textbf{#1 }
 	}
 	{ 
@@ -184,6 +185,30 @@ Sicherlich ist somit zum Beispiel die Potenzmenge $2^\Omega$ eine $\sigma$-Algeb
 \textbf{Beispiele (Formale Definitionen von Wahrscheinlichkeitsräumen)}
 
 
+
+\subsection*{Grundlegende Prinzipien}
+
+
+
+\begin{thm}{Additivität disjunkter Ereignisse}
+	Seien $A_1, \ldots, A_n$ paarweise disjunkte Ereignisse, so gilt:
+	
+	\begin{align*}
+	P[A_1\cup \cdots \cup A_n] &= P[A_1] + \cdots + P[A_n]
+	\end{align*}
+	
+\end{thm}
+
+\begin{thm}{Inklusion und Exklusionsprinzip}
+	\begin{align*}
+		P[A\cup B] =& P[A] + P[B] - P[A\cap B]\\
+		P[A\cup B\cup C] =& P[A] + P[B] + P[C] - P[A\cap B] - P[B\cap C] \\
+		&- P[B\cap C] + P[A\cap B \cap C]
+	\end{align*}
+\end{thm}
+
+
+
 \subsection*{Bedingte Wahrscheinlichkeit}
 
 \begin{method}{Bedingte Wahrscheinlichkeit}
@@ -244,9 +269,15 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 		P[A\cap B] &= P[A] \cdot P[B]
 	\end{align*}
 	
+	
+	Wir nennen $A_1,\cdots A_n$ unabhängig, falls für alle kombinationen von $A_i, \ldots A_j$ gilt dass
+	
+	\begin{align*}
+		P\left[\bigcap_{i=1}^{m} A_{k_i} \right] = \prod_{i=1}^{m}P[A_{k_i}]
+	\end{align*}
+	
 \end{method}
 
-\TODO{add more stuff}
 
 
 
@@ -270,13 +301,31 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 \end{itemize}
 
 
+\section*{Diskrete Zufallsvariablen und Verteilungen}
 
 
 
+\begin{method}{Diskrete Zufallsvariable (ZV)}
+	Sei $(\Omega, \F, P)$ ein diskreter Wahrscheinlichkeitsraum. Wir nennen $X : \Omega \to \X_X$ eine diskrete Zufallsvariable wobei $\X_X =  \{ X(w) : w\in\Omega\}\subseteq \R$.
+	
+	
+	Das Wahrscheinlichkeitsmass $P_X$ auf $\X_X$, genannt \textbf{Verteilung}, definieren wir als
+	
+	\begin{align*}
+	P_X(x) &= P(\{ X(w) = x : w\in\Omega\})\\
+	P_X(A) &= \sum_{x\in A} P_X(x)  \quad (A\subseteq\X)
+	\end{align*}
 
+\end{method}
 
-
-
+\TODO{check ? below}
+\begin{method}{Erwartungswert}
+	Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfunktion $p_X(x)$. Dann gilt:
+	
+	\begin{align*}
+		E[X] &= \sum_{x_k \in W(X) = \Omega?} x_k \cdot P_X(x_k)
+	\end{align*}
+\end{method}
 
 
 
