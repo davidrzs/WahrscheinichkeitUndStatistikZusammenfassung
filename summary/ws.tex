@@ -82,14 +82,15 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\X}{\mathcal{X}}
-%\newcommand{\cos}{\operatorname{cos}}
-%\newcommand{\sin}{\operatorname{sin}}
+\newcommand{\W}{\mathcal{W}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\E}{\operatorname{E}}
 %\newcommand{\exp}{\operatorname{exp}}
 
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage[framemethod=TikZ]{mdframed}
-\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!10,innertopmargin=15pt, innerbottommargin=15pt]
+\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!10,innertopmargin=15pt, innerbottommargin=15pt,nobreak=true]
 		\textbf{#1 }
 	}
 	{ 
@@ -110,7 +111,7 @@
 	\end{mdframed}
 }
 
-\newenvironment{thm}[1]{\begin{mdframed}[backgroundcolor=pink!50,innertopmargin=15pt, innerbottommargin=15pt, nobreak=false]
+\newenvironment{thm}[1]{\begin{mdframed}[backgroundcolor=pink!50,innertopmargin=15pt, innerbottommargin=15pt, nobreak=true]
 		\textbf{#1 }
 	}
 	{ 
@@ -306,35 +307,66 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 
 
 \begin{method}{Diskrete Zufallsvariable (ZV)}
-	Sei $(\Omega, \F, P)$ ein diskreter Wahrscheinlichkeitsraum. Wir nennen $X : \Omega \to \X_X$ eine diskrete Zufallsvariable wobei $\X_X =  \{ X(w) : w\in\Omega\}\subseteq \R$.
+	Sei $(\Omega, \F, P)$ ein diskreter Wahrscheinlichkeitsraum.
 	
-	
-	Das Wahrscheinlichkeitsmass $P_X$ auf $\X_X$, genannt \textbf{Verteilung}, definieren wir als
-	
-	\begin{align*}
-	P_X(x) &= P(\{ X(w) = x : w\in\Omega\})\\
-	P_X(A) &= \sum_{x\in A} P_X(x)  \quad (A\subseteq\X)
-	\end{align*}
+	Wir nennen 
+	$$X:\Omega \to \W(X) = \{x_1,\ldots x_n\}\subseteq \R$$
+	eine Zufallsvariable. mit $\W(X)$ der Wertebereich.
+	 
+	Zusätzlich definieren wir die \textit{Gewichtsfunktion} oder \textit{diskrete Dichte} von $X$ als 
+	$$p_X(x_k) = P[X = x_k] = P[\{ \omega | X(\omega) = x_k \}]$$
+	sowie auch die Verteilfunktion 
+	$$F_x(t) = P[X\leq t] = P[\{\omega | X(\omega) \leq t\}]$$
 
 \end{method}
 
-\TODO{check ? below}
+
 \begin{method}{Erwartungswert}
-	Sei $X$ eine diskrete Zufallsvariable mit Gewichtsfunktion $p_X(x)$. Dann gilt:
-	
+	Sei $X$ eine diskrete Zufallsvariable mit gewichtsfunktion $p_X(x)$. Wir definieren den Erwartungswert von $X$ als:
 	\begin{align*}
-		E[X] &= \sum_{x_k \in W(X) = \Omega?} x_k \cdot P_X(x_k)
+		\E[X] := \sum_{x_k\in \W(X)} x_k \cdot p_X(x)
 	\end{align*}
 \end{method}
 
 
+\begin{thm}{Eigenschaften des Erwartungswerts}
+\begin{itemize}
+	\item Für $Y = g(X)$ für eine Funktion $g$, so gilt 
+	\begin{align*}
+		\E[Y] = \E[g(X)] = \sum_{x_k\in\W(X)} g(x_k)p_X(x_k)
+	\end{align*}
+	\item Falls $£X$ nur Werte in $\N_0$ annimmt gilt:
+	\begin{align*}
+		\E[X] = \sum_{j=1}^{\infty} P[X \geq j] = \sum_{l=0}^{\infty} P[X > l]
+	\end{align*}
+	\item Falls $X \leq Y$  (d.h. $X(w) \leq Y(w)$ für alle $w$) so gilt auch $\E[X] \leq \E[Y]$
+	\item Für beliebige $a,b \in \R$ gilt $\E[aX + b] = a\E[X] + b$
+\end{itemize}
+\end{thm}
+
+
+
+\begin{method}{Varianz \& Standardabweichung}
+Sei $X$ eine diskrete Zufallsvariable. Ist $\E[X^2]$ konvergent, so gilt:
+\begin{align*}
+	\Var[X] := \E[(X-\E[X])^2]
+\end{align*}
+Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichung.
+\end{method}
+
+
+
+\begin{thm}{Eigenschaften der Varianz}
+	\begin{align*}
+	\Var[X] &= \E[X^2] - (E[X])^2\\
+	\Var[Y] &=\Var[aX+b] = a^2 \Var[X] \quad \text{mit } a,b\in\R , Y = aX+b
+	\end{align*}
+\end{thm}
 
 
 
 
-
-
-
+\vfill
 
 
 \newpage
