@@ -83,6 +83,8 @@
 \newcommand{\F}{\mathcal{F}}
 \newcommand{\X}{\mathcal{X}}
 \newcommand{\W}{\mathcal{W}}
+\newcommand{\Nor}{\mathcal{N}}
+\newcommand{\U}{\mathcal{U}}
 \newcommand{\Var}{\operatorname{Var}}
 \newcommand{\E}{\operatorname{E}}
 %\newcommand{\exp}{\operatorname{exp}}
@@ -399,8 +401,92 @@ Umgekehrt kann man aus einer messbaren Funktion $f:\R\to[0,\infty)$ mit $\int_{-
 \end{method}
 
 
+\subsection*{Wichtige stetige Verteilungen}
+
+\subsubsection*{Gleichverteilung}
+Die Gleichverteilung auf $[a,b]$ mit $\W(X)=[a,b]$, genannt $X\sim\U(a,b)$:
+
+\begin{align*}
+	f_X(t) &= \begin{cases}
+	\frac{1}{b-a} \ \text{ für } a \leq t \leq b\\
+	0 \ \text{ sonst}
+	\end{cases}
+	& 
+	F_X(t) &= \begin{cases}
+	0 \ \text{ für } t<a \\
+	\frac{t-a}{b-a} \ \text{ für } a \leq t \leq b\\
+	1 \ \text{ für } t > b
+	\end{cases}
+\end{align*}
 
 
+
+
+
+\subsubsection*{Exponentialverteilung}
+Die Exponentialverteilung mit Parameter $\lambda > 0$ mit $\W(X)=[0,\infty)$, genannt $X\sim Exp(\lambda)$:
+
+\begin{align*}
+f_X(t) &= \begin{cases}
+\lambda \cdot e^{-\lambda t} \ \text{ für } t \geq 0\\
+0 \text{ für } t < 0
+\end{cases}
+& 
+F_X(t) &= \begin{cases}
+1-e^{-\lambda t} \text{ für } t\geq 0\\
+0 \ \text{ für } t < 0
+\end{cases}
+\end{align*}
+
+Die Exponentialverteilung ist Gedächtnislos: 
+$$P[X > t+s| X > s] = P[X > t]$$
+
+
+\subsubsection*{Normalverteilung}
+Die Normalverteilung mit Parameter $\sigma^2$, der Varianz, $\mu$, dem Erwartungswert sowie $\W(X) = \R$. Man schreibt $X\sim \Nor(\mu,\sigma^2)$
+
+\begin{align*}
+f_X(t) &= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(t-\mu)^2}{2\sigma^2}}
+\end{align*}
+
+Problem: Das Integral ist mühsam. Trick Wir plotten die Dichte $\varphi(t)$ sowie Verteilfunktion $\Phi(t)$ von $\Nor(0,1)$ und benutzen dass $\frac{X-\mu}{\sigma} \sim \Nor(0,1)$.
+
+
+
+
+\subsection*{Erwartungswerte}
+
+\begin{method}{Erwartungswert}
+	Ist $X$ stetig mit Dichte $f_X(x)$, so ist
+	\begin{align*}
+		\E[X]:= \int_{-\infty}^{+\infty} x\cdot f_X(x) dx
+	\end{align*}
+	sofern das Integral absolut konvergiert.
+\end{method}
+
+\textbf{Beispiel (nicht konvergenter Erwartungswert):}
+Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
+
+\begin{align*}
+f_X(t) &= \frac{1}{\pi} \frac{1}{1+t^2}
+& 
+F_X(t) &= \frac{1}{2} + \frac{1}{\pi}\arctan(t)
+\end{align*}
+
+Dann gilt:
+
+\begin{align*}
+	\int_{-\infty}^\infty |x|f_X(x) dx &= \lim\limits_{b\to\infty} \frac{1}{\pi}\log(1+b^2) = +\infty
+\end{align*}
+
+
+
+\begin{thm}{Transformation von Zufallsvariablen}
+	Sei $X$ eine Zufallsvaruable und $Y=g(X)$ eine weitere. Ist $X$ stetig mit Dichte $f_X(x)$ so ist:
+	\begin{align*}
+		\E[Y] = \E[g(X)] = \int_{-\infty}^{+\infty} g(x) f_X(x) dx
+	\end{align*}
+\end{thm}
 
 
 \vfill
