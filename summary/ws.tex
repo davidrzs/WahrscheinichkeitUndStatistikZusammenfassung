@@ -365,6 +365,43 @@ Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichu
 
 
 
+\section*{Algemeine Zufallsvariable}
+
+
+
+\begin{method}{Verteilungsfunktion}
+	Wir nennen $F_X : \R \to [0,1]$ mit 
+	
+	\begin{align*}
+		F_X (t) = P[X\leq t]:= P[\{\omega | X(\omega) \leq t\}]
+	\end{align*}
+	eine Verteilfunktion. Dies hat folgende Eigenschaften:
+	\begin{itemize}
+		\item $F_X$ ist monoton wachsend $F_X(s)\leq F_X(t)$ für $s\leq t$ und rechtsstetig $F_X(u) \to F_X(t)$ für $u \to t$.
+		\item $\lim\limits_{t\to-\infty} F_X(t) = 0$, $\lim\limits_{t\to + \infty} F_X(t) = 1$ 
+	\end{itemize}
+	umgekehrt ist jede Funktion mit diesen Eigenschaften eine Verteilungsfunktion $F_X$ einer Zufallsvariablen $X$.
+\end{method}
+
+
+\begin{method}{Wahrscheinlichkeitsmass}
+	Wir nennen $\mu_X(B) := P[X \in B]$ das Wahrscheinlichkeitsmass mit $\mu_X((-\infty,t]) = F_X(t)$
+\end{method}
+
+\begin{method}{Dichtefunktion}
+	Falls $F_X(t) = \int_{-\infty}^t f_X(s) ds$ für $\forall t\in\R$ so nennt man $F_X(t)$ absolut stetig und $f_X(s)$ die Dichtefunktion. Mit folgenden Eigenschaften:
+	\begin{itemize}
+		\item $f_X \geq 0$ und $f_X = 0$ ausserhalb von $\W(X)$.
+		\item $\int_{-\infty}^\infty f_X(s) ds = 1$ folgt aus $\lim_{t \to -\infty}F_X(t) = 1$
+	\end{itemize}
+
+Umgekehrt kann man aus einer messbaren Funktion $f:\R\to[0,\infty)$ mit $\int_{-\infty}^\infty f(s)ds = 1$ eine Zufallsfariable $X$ konstruieren.
+\end{method}
+
+
+
+
+
 
 \vfill
 
