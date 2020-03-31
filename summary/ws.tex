@@ -367,7 +367,7 @@ Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichu
 
 
 
-\section*{Algemeine Zufallsvariable}
+\section*{Allgemeine Zufallsvariable}
 
 
 
@@ -487,6 +487,69 @@ Dann gilt:
 		\E[Y] = \E[g(X)] = \int_{-\infty}^{+\infty} g(x) f_X(x) dx
 	\end{align*}
 \end{thm}
+
+
+
+\subsection*{Gemeinsame Verteilungen, unabhängige Zufallsvariablen}
+
+
+\begin{method}{Gemeinsame Verteilungsfunktion}
+	Die gemeinsame Verteilfunktion von $n$ Zufallsvariablen $X_1,\ldots, X_n$ ist die Abbildung $F:\R^n \to [0,1]$ mit
+	
+	\begin{align*}
+		F(x_1,\ldots,x_n) &:= P[X_1 \leq x_1, \ldots , X_n \leq x_n]\\
+		F(x_1,\ldots,x_n) &:= \int_{-\infty}^{x_1}\cdots \int_{-\infty}^{x_n}f(t_1,\ldots,t_n)dt_n\ldots dt_1
+	\end{align*}
+	
+	dabei ist $f:\R^n \to [0,\infty)$ die gemeinsame Dichte für welche gilt:
+	\begin{itemize}
+		\item $f(x_1,\ldots,x_n)\geq 0$ und $=0$ ausserhalb von $\W(X_1,\ldots,X_n)$
+		\item $\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}f(t_1,\ldots,t_n)dt_n\ldots dt_1 = 1$
+		\item $P[(X_1,\ldots X_n)\in A] = \int_{(x_1,\ldots,x_n)\in A}f(t_1,\ldots,t_n)dt_n\ldots dt_1$
+	\end{itemize} 
+TODO: muss ich das dritte Prüfen?
+\end{method}
+
+\begin{method}{Randverteilung} Haben $X,Y$ die gemeinsame Dichtefunktion $F$, so ist die Funktion $F_X : \R \to [0,1]$ mit 
+	
+\begin{align*}
+	F_X(x) := P[Y \leq y] = P[x\leq Y, Y < \infty] = \lim_{y \to \infty} F(x,y)
+\end{align*}
+die sogenannte Randverteilung von $X$.
+
+Falls die Dichte $f(x,y)$ existiert so gilt:
+
+\begin{align*}
+	f_X(x) &= \int_{-\infty}^{\infty}f(x,y) dy\\
+	f_X(x) &= \frac{d}{dx}F_X(x) = \frac{d}{dx}\lim_{y \to \infty} F(x,y)
+\end{align*}
+
+\end{method}
+
+
+\begin{method}{Unabhängigkeit von Zufallsvariablen} Die Zufallsvariablen $X_1,\ldots, X_n$ heissen unabhängig, falls gilt
+	
+	\begin{align*}
+F(x_1,\ldots x_n) &= F_{X_1}(x_1) \cdots F_{X_n}(x_n) \quad \text{respektive:}\\
+f(x_1,\ldots x_n) &= f_{X_1}(x_1) \cdots f_{X_n}(x_n) \quad \forall x_1,\ldots x_n\\
+	\end{align*}
+	
+	TODO check!
+\end{method}
+
+
+\subsection*{Transformation von stetigen Zufallsvariablen}
+
+Angenommen wir haben die Dichte $f(x,y)$ gegeben und wir suchen die Verteilfunktion und Dichte von $Z = X + Y$. Wir haben $F_Z(z) = P[Z \leq z] = P[X+Y\leq z]$. Nun definieren wir $A_z = \{(x,y)\in\R^2|x+y\leq z\}$. Es gilt nun:
+
+\begin{align*}
+	F_Z(z) = P[(X,Y)\in A_z] &= \int_{A_z} \int f(x,y) dy dx\\
+	&= \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f(x,y) dy dx
+\end{align*}
+
+Sowie $f_Z(z) = \frac{d}{dz} F_Z(z)$.
+
+
 
 
 \vfill
