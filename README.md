@@ -5,5 +5,5 @@ In diesem GIT-Repository ist meine Zusammenfassung, welche ich an die Prüfung n
 
 ## Quellen
 - Martin Schweizer. (2015). Skript zur Vorlesung Wahrscheinlichkeit und Statistik. ETH Zürich
-- [Stefan Heules W+S Zusammenfassung]http://summaries.stefanheule.com/en/
+- [Stefan Heules W+S Zusammenfassung](http://summaries.stefanheule.com/en/)
 - [Anderson, D. F., Seppäläinen, T. O., & Valko, B. (2018). Introduction to Probability. Cambridge: Cambridge University Press.](https://www.math.wisc.edu/asv/)
