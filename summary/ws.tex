@@ -367,6 +367,99 @@ Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichu
 
 
 
+\subsection*{Wichige diskrete Verteilungen}
+
+\subsubsection*{Diskrete Gleichverteilung}
+Die diskrete Gleichverteilung auf  $\W(X)=\{x_1,\ldots,x_n\}$ hat folgende Eigenschaften:
+
+\begin{align*}
+	p_X(x_k) &= P[X = x_k] = \frac{1}{N}
+\end{align*}
+
+mit 
+
+\begin{align*}
+	\operatorname {E}[X]&={\frac  {1}{n}}\sum _{{i=1}}^{n}x_{i} & \operatorname {Var}[X]&={\frac  {1}{n}}\left(\sum _{{i=1}}^{n}x_{i}^{2}-{\frac  {1}{n}}\left(\sum _{{i=1}}^{n}x_{i}\right)^{2}\right)
+\end{align*}
+
+\subsubsection*{Bernoulli Verteilung}
+Wir machen ein einziges 0-1 Experiment mit Erfolgswahrscheinlichkeit $p$. Es gilt demnach $\W(X) = \{0,1\}$ mit 
+
+\begin{align*}
+	p_X(1) &= P[X=1] = p & 	p_X(0) &= P[X=0] = 1-p
+\end{align*}
+
+Woraus folgt:
+
+\begin{align*}
+	\E[X] &= p & \Var[X] &= p(1-p)
+\end{align*}
+
+\subsubsection*{Binomialverteilung}
+Wir möchten gerne die Anzahl Erfolge bei $n$ unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$ beschreiben. Wir schreiben $X \sim \operatorname{Bin}(n,p)$. Dabei ist $\W(X) = \{0,1,\ldots,n\}$ und 
+
+\begin{align*}
+	p_X(k) &= P[X=k] = {n \choose k} p^k (1-p)^{n-k}
+\end{align*}
+
+sowie 
+
+\begin{align*}
+	\E[X] &= np & \Var[X] &= np(1-p)
+\end{align*}
+
+
+\subsubsection*{Geometrische Verteilung}
+Wir betrachten eine unendliche Folge von unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$. $X$ sei die Wartezeit auf den ersten Erfolg. Wir schreiben $X\sim\operatorname{Geom}(p)$ und haben:
+
+\begin{align*}
+	p_X(k) &= P[X=k] = p(1-p)^{k-1}
+\end{align*}
+\begin{align*}
+	\E[X] &= \frac{1}{p} & \Var[X] &= \frac{1-p}{p^2}
+\end{align*}
+
+
+\subsubsection*{Negativbinomiale Verteilung}
+Wir betrachten eine unendliche Folge von unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$. So sei $X$ die Wartezeit auf den $r$-ten Erfolg. Wir schreiben $X\sim \operatorname{NB(r,p)}$.
+
+\begin{align*}
+	P_X(k) &= P[X = k] = {k-1 \choose r-1} p^r(1-p)^{k-r}
+\end{align*}
+\begin{align*}
+\E[X] &= \frac{r}{p} & \Var[X] &= \frac{r(1-p)}{p^2}
+\end{align*}
+
+\subsubsection*{Hypergeometrische Verteilung}
+In einer Urne seien $n$ Gegenstände, davon $r$ vom Typ 1 und $n-r$ vom Typ 2. Man
+zieht ohne Zurücklegen $m$ der Gegenstände; die Zufallsvariable $X$ beschreibe die Anzahl
+der Gegenstände vom Typ 1 in dieser Stichprobe vom Umfang $m$. Dann hat $X$ eine
+hypergeometrische Verteilung mit Parametern $n,m,r$ mit $\W(X) = \{0, 1, \ldots, \min(m, r)\}$ sowie
+
+\begin{align*}
+	pX(k) &= \frac{{r\choose k} {n-r \choose m-k}}{{n \choose m}}
+\end{align*}
+
+\begin{align*}
+\E[X] &= m\frac{r}{n} & \Var[X] &= m\frac{r}{n}\left(1-\frac{r}{n}\right) \frac{n-m}{n-1}
+\end{align*}
+
+
+
+\subsubsection*{Poissonverteilung}
+
+Mit Parameter $\lambda>0$ auf $\W(X) = \N_0$ schreiben wir $X\sim \mathcal{P}(\lambda)$
+
+\begin{align*}
+	p_X(k) &= P[X = k] = e^{-\lambda} \frac{\lambda^k}{k!}
+\end{align*}
+
+\begin{align*}
+\E[X] &= \lambda & \Var[X] &= \lambda
+\end{align*}
+
+
+
 \section*{Allgemeine Zufallsvariable}
 
 
@@ -550,6 +643,9 @@ Angenommen wir haben die Dichte $f(x,y)$ gegeben und wir suchen die Verteilfunkt
 Sowie $f_Z(z) = \frac{d}{dz} F_Z(z)$.
 
 
+
+
+\TODO{serie 5 aufgabe 2 - transformation}
 
 
 \vfill
