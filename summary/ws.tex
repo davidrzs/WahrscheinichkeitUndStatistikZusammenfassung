@@ -591,6 +591,13 @@ Dann gilt:
 	\begin{align*}
 		\E[Y] = \E[g(X)] = \int_{-\infty}^{+\infty} g(x) f_X(x) dx
 	\end{align*}
+	
+	Falls $X,Y$ zwei stetige Zufallsvariablen sind $g(x,y) : \R^2 \to \R$ eine Funktion, dann gilt:
+	
+	\begin{align*}
+		\E[g(X,Y)] &= \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x,y) f_{X,Y}(x,y) dx dy
+	\end{align*}
+	
 \end{thm}
 
 
@@ -631,6 +638,10 @@ Falls die Dichte $f(x,y)$ existiert so gilt:
 
 \end{method}
 
+
+\textbf{Median einer Verteilung}
+
+Wir nennen $m_X \in \W(X)$ mit $F_X(m_X) = {1 \over 2}$ den Median der Verteilung $X$.
 
 \begin{method}{Unabhängigkeit von Zufallsvariablen} Die Zufallsvariablen $X_1,\ldots, X_n$ heissen unabhängig, falls gilt
 	
