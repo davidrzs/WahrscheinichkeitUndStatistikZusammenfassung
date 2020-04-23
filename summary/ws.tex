@@ -190,7 +190,7 @@ Sicherlich ist somit zum Beispiel die Potenzmenge $2^\Omega$ eine $\sigma$-Algeb
 
 
 
-\subsection{Grundlegende Prinzipien}
+\subsection*{Grundlegende Prinzipien}
 
 
 
@@ -266,46 +266,33 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 \subsection*{Unabhängigkeit}
 
 \begin{method}{Unabhängigkeit}
-	
-	Wir nenne zwei Ereignisse $A$, $B$ unabhängig falls
+	Wir nennen zwei Ereignisse $A$, $B$ unabhängig falls
 	
 	\begin{align*}
 		P[A\cap B] &= P[A] \cdot P[B]
 	\end{align*}
 	
-	
-	Wir nennen $A_1,\cdots A_n$ unabhängig, falls für alle kombinationen von $A_i, \ldots A_j$ gilt dass
+	Für $P[A] \neq 0$ gilt:
 	
 	\begin{align*}
-		P\left[\bigcap_{i=1}^{m} A_{k_i} \right] = \prod_{i=1}^{m}P[A_{k_i}]
+		\text{$A,B$ unabhängig} &\iff P[B|A] = P[B]
+	\end{align*}
+	
+	
+\end{method}
+
+\begin{method}{Stochastische Unabhängigkeit}
+	Wir nennen $A_1,\cdots A_n$ (stochastisch) unabhängig, falls für alle Kombinationen von $A_i, \ldots A_j$ gilt dass
+	
+	\begin{align*}
+	P\left[\bigcap_{i=1}^{m} A_{k_i} \right] = \prod_{i=1}^{m}P[A_{k_i}]
 	\end{align*}
 	
 \end{method}
 
 
 
-
-
-\section*{Kombinatorik}
-
-\begin{itemize}
-	\item \textbf{Auf wie viele Arten kann man $n$ Objekte (z.B. nebeneinander) anordnen?}
-	
-	Dies ist die Anzahl Permutationen von $n$ Elementen und ist $n!$.
-	
-	
-	\item 	\textbf{Auf wie viele Arten kann man $k$ aus $n$ Objekten auswählen (mit $k\leq n$ ohne Zurücklegen)?}
-	
-	Dies ist die Anzahl Kombinationen ist $\binom{n}{k} = \frac{n!}{k!(n-k)!}$.
-	
-	
-	\item \textbf{Wie viele Sequenzen der Länge $m$ kann ma mit den $n$ Symbolen bilden?}
-	
-	Dies ist die Anzahl der Variationen (mit Wiederholung) und ist $n^m$
-\end{itemize}
-
-
-\section*{Diskrete Zufallsvariablen und Verteilungen}
+\section{Diskrete Zufallsvariablen und Verteilungen}
 
 
 
@@ -370,7 +357,35 @@ Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichu
 
 
 
-\subsection*{Wichige diskrete Verteilungen}
+
+\begin{method}{Gemeinsame Verteilfunktion}
+	Seien $X_1,\ldots X_n$ Zufallsvariablen. Die gemeinsame Verteilfunktion $F:\R^n \to [0,1]$ ist definiert durch
+	
+	\begin{align*}
+		(x_1,\ldots x_n)\mapsto F(x_1,\ldots x_n) &= P[X_1 \leq x_1, \ldots X_n \leq x_n]\\
+		&= \sum_{y_1 \leq x_1, \ldots, y_n \leq x_n} p(y_1,\ldots, y_n)
+	\end{align*}
+	
+	
+\end{method}
+
+
+\TODO{see lecture notes post-it}
+
+\subsection*{Bedingte Verteilungen}
+
+\begin{method}{Bedingte Verteilungen}
+	Seien $X$ und $Y$ Zufallsvariablen mit gemeinsamer Gewichtsfunktion $p(x,y)$. Die bedingte Gewichtsfunktion von $X$ gegeben, dass $Y = y$ ist definiert durch
+	
+	\begin{align*}
+		p_{X|Y} (x|y) := P[X=x | Y=y] = \frac{P[X=x, Y=y]}{P[Y=y]} = \frac{p(x,y)}{p_Y(y)}
+	\end{align*}
+\end{method}
+
+\textbf{Beispiel (B)}
+
+
+\section{Wichige diskrete Verteilungen}
 
 \subsubsection*{Diskrete Gleichverteilung}
 Die diskrete Gleichverteilung auf  $\W(X)=\{x_1,\ldots,x_n\}$ hat folgende Eigenschaften:
@@ -463,7 +478,7 @@ Mit Parameter $\lambda>0$ auf $\W(X) = \N_0$ schreiben wir $X\sim \mathcal{P}(\l
 
 
 
-\section*{Allgemeine Zufallsvariable}
+\section{Allgemeine Zufallsvariable}
 
 
 
@@ -748,6 +763,28 @@ Die Umkehrung gilt jedoch im Allgemeinen nicht.
 
 	Wobei $\Phi$ die Verteilungsfunktion von $\mathcal{N}(0,1)$ ist.	
 \end{method}
+
+
+
+
+\section {Kombinatorik}
+
+\begin{itemize}
+	\item \textbf{Auf wie viele Arten kann man $n$ Objekte (z.B. nebeneinander) anordnen?}
+	
+	Dies ist die Anzahl Permutationen von $n$ Elementen und ist $n!$.
+	
+	
+	\item 	\textbf{Auf wie viele Arten kann man $k$ aus $n$ Objekten auswählen (mit $k\leq n$ ohne Zurücklegen)?}
+	
+	Dies ist die Anzahl Kombinationen ist $\binom{n}{k} = \frac{n!}{k!(n-k)!}$.
+	
+	
+	\item \textbf{Wie viele Sequenzen der Länge $m$ kann ma mit den $n$ Symbolen bilden?}
+	
+	Dies ist die Anzahl der Variationen (mit Wiederholung) und ist $n^m$
+\end{itemize}
+
 
 
 
