@@ -90,9 +90,20 @@
 %\newcommand{\exp}{\operatorname{exp}}
 
 
+% some shortcuts
+\newcommand{\ds}{\displaystyle}
+\newcommand{\arr}{\rightarrow}
+\newcommand{\nop}[1]{}
+\renewcommand{\hat}{\widehat}
+
+% stuff for integrals
+\newcommand{\intl}{\int\limits}
+\newcommand{\rmd}{\mathrm{d}}
+
+
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage[framemethod=TikZ]{mdframed}
-\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!10,innertopmargin=15pt, innerbottommargin=15pt,nobreak=true]
+\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!3,innertopmargin=15pt, innerbottommargin=15pt,nobreak=true]
 		\textbf{#1 }
 	}
 	{ 
@@ -113,7 +124,7 @@
 	\end{mdframed}
 }
 
-\newenvironment{thm}[1]{\begin{mdframed}[backgroundcolor=pink!50,innertopmargin=15pt, innerbottommargin=15pt, nobreak=true]
+\newenvironment{thm}[1]{\begin{mdframed}[backgroundcolor=pink!20,innertopmargin=15pt, innerbottommargin=15pt, nobreak=true]
 		\textbf{#1 }
 	}
 	{ 
@@ -312,50 +323,31 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 
 
 \begin{method}{Erwartungswert}
-	Sei $X$ eine diskrete Zufallsvariable mit gewichtsfunktion $p_X(x)$. Wir definieren den Erwartungswert von $X$ als:
-	\begin{align*}
-		\E[X] := \sum_{x_k\in \W(X)} x_k \cdot p_X(x)
-	\end{align*}
-\end{method}
-
-
-\begin{thm}{Eigenschaften des Erwartungswerts}
-\begin{itemize}
-	\item Für $Y = g(X)$ für eine Funktion $g$, so gilt 
-	
-	\begin{align*}
-		\E[Y] = \E[g(X)] = \sum_{x_k\in\W(X)} g(x_k)p_X(x_k)
-	\end{align*}
-	\item Falls $£X$ nur Werte in $\N_0$ annimmt gilt:
-	
-	\begin{align*}
-		\E[X] = \sum_{j=1}^{\infty} P[X \geq j] = \sum_{l=0}^{\infty} P[X > l]
-	\end{align*}
-	\item Falls $X \leq Y$  (d.h. $X(w) \leq Y(w)$ für alle $w$) so gilt auch $\E[X] \leq \E[Y]$
-	\item Für beliebige $a,b \in \R$ gilt $\E[aX + b] = a\E[X] + b$
-\end{itemize}
-\end{thm}
-
-
-
-\begin{method}{Varianz \& Standardabweichung}
-Sei $X$ eine diskrete Zufallsvariable. Ist $\E[X^2]$ konvergent, so gilt:
 \begin{align*}
-	\Var[X] := \E[(X-\E[X])^2]
+\mu = \E(X) &= \sum_{x_i \in \mathcal{W}(X)} x_i \cdot P(X=x_i) = \sum_{x_i \in \mathcal{W}(X)} x_i \cdot p(x_i) \\
+\E(g(X)) &= \sum_{x_i \in \mathcal{W}(X)} g(x_i) \cdot P(X=x_i) \\
+\E(aX+b) &= a\E(X) + b
 \end{align*}
-Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichung.
+\end{method}
+
+\begin{method}{Varianz}
+\begin{align*}
+\Var(X) &= \sum_{x_i \in \mathcal{W}(X)} (x_i - \mu)^2 \cdot P(X=x_i) \\
+\Var(X) &= \E((X - \mu)^2) = \E(X^2) - \E(X)^2 \\
+\Var(aX+b) &= a^2 \cdot \Var(X)
+\end{align*}
+\end{method}
+
+\begin{method}{Standardabweichung}
+\begin{align*}
+\sigma &= \sqrt{\Var(X)} \\
+\sigma_{aX+b} &= |a|\cdot \sigma_X
+\end{align*}
 \end{method}
 
 
 
-\begin{thm}{Eigenschaften der Varianz}
-	\begin{align*}
-	\Var[X] &= \E[X^2] - (E[X])^2\\
-	\Var[Y] &=\Var[aX+b] = a^2 \Var[X] \quad \text{mit } a,b\in\R , Y = aX+b
-	\end{align*}
-\end{thm}
-
-
+\subsection*{Verteilungen mehrerer Variablen}
 
 
 \begin{method}{Gemeinsame Verteilfunktion}
@@ -369,8 +361,78 @@ Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichu
 	
 \end{method}
 
+\begin{method}{Gemeinsame Verteilfunktion}
+	Seien $X,Y$ ZV, so gilt für $F_X : \R \to [0,1]$:
+	
+	\begin{align*}
+		F_X(x) &= P[X \leq x] = P[X \leq x , Y < \infty] = \lim\limits_{y\to\infty} F(x,y)
+	\end{align*}
+\end{method}
 
-\TODO{see lecture notes post-it}
+\begin{method}{Gewichtsfunktion der Randverteilung}
+	Wir definieren $p_X(x) : \W(X) \to [0,1]$ als die Gewichtsfunktion der Randverteilung von $X$ gegeben durch 
+
+	\begin{align*}
+p_X(x) &= P[X=x] = \sum_{y_i\in \W(Y)} p(x,y_i)
+	\end{align*}
+
+\end{method}
+
+
+\begin{method}{Unabhängigkeit von Zufallsvariable}
+	Die ZV $X_1, \ldots X_n$ heissen unabhängig, gdw 
+	
+	\begin{align*}
+		F(x_1, \ldots, x_n) &= F_{X_1}(x_1) \cdots F_{X_n}(x_n) \quad \forall x_1,\ldots,x_n\\
+		&\text{ oder analog dazu}\\
+		p(x_1,\ldots, x_n) &= p_{X_1}(x_1)\cdots p_{X_1n}(x_n) \quad \forall x_1,\ldots,x_n
+	\end{align*}
+
+	
+	
+	
+\end{method}
+
+
+\subsection*{Kovarianz und Korrelation}
+
+
+\begin{method}{Kovarianz}
+\begin{align*}	
+\operatorname{Cov}(X,Y) &= \E\left(\left(X-\E(X)\right)\left(Y-E(Y)\right)\right) \\
+\operatorname{Cov}(X,X) &= \Var(X)
+\end{align*}
+\end{method}
+
+\begin{method}{Korrelation}
+\begin{align*}
+\operatorname{Corr}(X,Y) &= \rho_{XY} = \frac{\operatorname{Cov}(X,Y)}{\sqrt{\Var(X)} \cdot \sqrt{\Var(Y)}}
+= \frac{\operatorname{Cov}(X,Y)}{\sigma_X\cdot\sigma_Y} \\
+\rho_{XY} \in [-1,1] &  \text{\small als dimensionsloses Mass des linearen Zusammenhanges} \\
+\rho_{XY} &=\pm 1 \quad \iff \quad Y = a\pm bX \quad \text{mit }b>0, a \in \R
+\end{align*}
+\end{method}
+
+\begin{thm}{Rechenregeln}
+\begin{align*}
+\operatorname{Cov}(X,Y) &= \E(X\cdot Y) - \E(X) \cdot \E(Y) \\
+\operatorname{Cov}(\cdot,\cdot) &\text{ ist bilinear:} \quad \\
+\operatorname{Cov}(a+bX,c+dY) &= b\cdot d \cdot \operatorname{Cov} (X,Y) \\
+\operatorname{Cov}(X+Y,Z) &= \operatorname{Cov}(X,Z)+\operatorname{Cov}(Y,Z) \\
+\Var(X+Y) &= \Var(X)+\Var(Y)+2 \cdot \operatorname{Cov}(X,Y) \\
+\operatorname{Cov} &\text{ ist symmetrisch}
+\end{align*}
+Sind die Zufallsvariablen $X$ und $Y$ unabhängig, so gilt $\operatorname{Cov}(X,Y) = \operatorname{Corr}(X,Y) = 0$.
+Die Umkehrung gilt jedoch im Allgemeinen nicht.
+\end{thm}
+
+
+
+\begin{mdframed}
+	\centering
+{unabhängig $\implies$ paarweise unabhängig $\implies$ unkorreliert}
+\end{mdframed}
+
 
 \subsection*{Bedingte Verteilungen}
 
@@ -382,7 +444,9 @@ Zusätzlich definieren wir $\sigma(X) = \sqrt{\Var[X]}$ als die Standardabweichu
 	\end{align*}
 \end{method}
 
-\textbf{Beispiel (B)}
+\textbf{Beispiel (Bayesian Interference)}
+...
+\TODO{}
 
 
 \section{Wichige diskrete Verteilungen}
@@ -574,15 +638,47 @@ Problem: Das Integral ist mühsam. Trick Wir plotten die Dichte $\varphi(t)$ sow
 Es gilt $\Phi(-x) = 1 - \Phi(x)$ sowie ${\Phi^{-1}(x) = -\Phi^{-1}(1-x)}$
 
 
-\subsection*{Erwartungswerte}
+\subsection*{Kennzahlen stetiger Zufallsvariablen}
 
 \begin{method}{Erwartungswert}
-	Ist $X$ stetig mit Dichte $f_X(x)$, so ist
-	\begin{align*}
-		\E[X]:= \int_{-\infty}^{+\infty} x\cdot f_X(x) dx
-	\end{align*}
-	sofern das Integral absolut konvergiert.
+\begin{align*}
+\mu = \E(X) &= \int_{-\infty}^{\infty} x \cdot f_X(x) \; \rmd x \\
+\E(g(X)) &= \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \; \rmd x 
+\end{align*}
 \end{method}
+
+
+\begin{method}{Varianz}
+\begin{align*}
+\Var(X) =  \E{(X^2)} - \E{(X)}^2  &= \int_{-\infty}^{\infty} (x - \E(X))^2 \cdot f_X(x) \; \rmd x \\
+\Var(aX+b) &= a^2\Var(X) 
+\end{align*}
+\end{method}
+
+\begin{method}{Standardabweichung}
+\begin{align*}
+&\sigma = \sqrt{\Var(X)} \\
+&\sigma_{aX+b} = |a|\cdot \sigma_X
+\end{align*}
+\end{method}
+
+\begin{method}{$\alpha$-Quantile, Median}
+\begin{align*}
+\text{Sei} \quad& 0<\alpha<1   \\
+P(X \leq q(a))=\alpha \qquad &\implies \qquad F_X(q(a))=\alpha \\
+\phantom{\quad P(X \leq q(a))=\alpha \qquad}& \implies \qquad q(a)=F_X^{-1}(a)\\
+\text{Median:} &\quad \tfrac{1}{2}\text{-Quantil} 
+\end{align*}
+\end{method}
+
+\begin{method}{{Lineare Transformation}}
+\begin{align*}
+Y = aX+b \quad &\implies \quad f_Y(x) = \tfrac{1}{|a|} f_X\left(\tfrac{x-b}{|a|}\right)
+\end{align*}
+\end{method}
+
+
+
 
 \textbf{Beispiel (nicht konvergenter Erwartungswert):}
 Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
@@ -682,37 +778,6 @@ Sowie $f_Z(z) = \frac{d}{dz} F_Z(z)$.
 
 
 \TODO{serie 5 aufgabe 2 - transformation}
-
-\section*{Kovarianz und Korrelation}
-
-\subsubsection*{Kovarianz}
-
-\begin{align*}	
-\operatorname{Cov}(X,Y) &= \E\left(\left(X-\E(X)\right)\left(Y-E(Y)\right)\right) \\
-\operatorname{Cov}(X,X) &= \Var(X)
-\end{align*}
-
-\subsubsection*{Korrelation}
-	\begin{align*}
-\operatorname{Corr}(X,Y) &= \rho_{XY} = \frac{\operatorname{Cov}(X,Y)}{\sqrt{\Var(X)} \cdot \sqrt{\Var(Y)}}
-= \frac{\operatorname{Cov}(X,Y)}{\sigma_X\cdot\sigma_Y} \\
-\rho_{XY} \in [-1,1] &  \text{\small als dimensionsloses Mass des linearen Zusammenhanges} \\
-\rho_{XY} &=\pm 1 \quad \iff \quad Y = a\pm bX \quad \text{mit }b>0, a \in \R
-	\end{align*}
-
-\subsubsection*{Rechenregeln}
-\begin{align*}
-\operatorname{Cov}(X,Y) &= \E(X\cdot Y) - \E(X) \cdot \E(Y) \\
-\operatorname{Cov}(\cdot,\cdot) &\text{ ist bilinear:} \quad \\
-\operatorname{Cov}(a+bX,c+dY) &= b\cdot d \cdot \operatorname{Cov} (X,Y) \\
-\operatorname{Cov}(X+Y,Z) &= \operatorname{Cov}(X,Z)+\operatorname{Cov}(Y,Z) \\
-\Var(X+Y) &= \Var(X)+\Var(Y)+2 \cdot \operatorname{Cov}(X,Y) \\
-\operatorname{Cov} &\text{ ist symmetrisch}
-\end{align*}
-Sind die Zufallsvariablen $X$ und $Y$ unabhängig, so gilt $\operatorname{Cov}(X,Y) = \operatorname{Corr}(X,Y) = 0$.
-Die Umkehrung gilt jedoch im Allgemeinen nicht.
-
-
 
 
 \section*{Ungleichungen und Grenzwertsätze}
