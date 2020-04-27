@@ -89,6 +89,7 @@
 \newcommand{\E}{\operatorname{E}}
 %\newcommand{\exp}{\operatorname{exp}}
 
+\newcommand{\mc}{\mathcal}
 
 % some shortcuts
 \newcommand{\ds}{\displaystyle}
@@ -103,7 +104,7 @@
 
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage[framemethod=TikZ]{mdframed}
-\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!3,innertopmargin=15pt, innerbottommargin=15pt,nobreak=true]
+\newenvironment{method}[1]{\begin{mdframed}[backgroundcolor=blue!10,innertopmargin=15pt, innerbottommargin=15pt,nobreak=true]
 		\textbf{#1 }
 	}
 	{ 
@@ -301,7 +302,7 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 	
 \end{method}
 
-
+\newpage
 
 \section{Diskrete Zufallsvariablen und Verteilungen}
 
@@ -320,32 +321,6 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 	$$F_x(t) = P[X\leq t] = P[\{\omega | X(\omega) \leq t\}]$$
 
 \end{method}
-
-
-\begin{method}{Erwartungswert}
-\begin{align*}
-\mu = \E(X) &= \sum_{x_i \in \mathcal{W}(X)} x_i \cdot P(X=x_i) = \sum_{x_i \in \mathcal{W}(X)} x_i \cdot p(x_i) \\
-\E(g(X)) &= \sum_{x_i \in \mathcal{W}(X)} g(x_i) \cdot P(X=x_i) \\
-\E(aX+b) &= a\E(X) + b
-\end{align*}
-\end{method}
-
-\begin{method}{Varianz}
-\begin{align*}
-\Var(X) &= \sum_{x_i \in \mathcal{W}(X)} (x_i - \mu)^2 \cdot P(X=x_i) \\
-\Var(X) &= \E((X - \mu)^2) = \E(X^2) - \E(X)^2 \\
-\Var(aX+b) &= a^2 \cdot \Var(X)
-\end{align*}
-\end{method}
-
-\begin{method}{Standardabweichung}
-\begin{align*}
-\sigma &= \sqrt{\Var(X)} \\
-\sigma_{aX+b} &= |a|\cdot \sigma_X
-\end{align*}
-\end{method}
-
-
 
 \subsection*{Verteilungen mehrerer Variablen}
 
@@ -393,45 +368,6 @@ p_X(x) &= P[X=x] = \sum_{y_i\in \W(Y)} p(x,y_i)
 	
 \end{method}
 
-
-\subsection*{Kovarianz und Korrelation}
-
-
-\begin{method}{Kovarianz}
-\begin{align*}	
-\operatorname{Cov}(X,Y) &= \E\left(\left(X-\E(X)\right)\left(Y-E(Y)\right)\right) \\
-\operatorname{Cov}(X,X) &= \Var(X)
-\end{align*}
-\end{method}
-
-\begin{method}{Korrelation}
-\begin{align*}
-\operatorname{Corr}(X,Y) &= \rho_{XY} = \frac{\operatorname{Cov}(X,Y)}{\sqrt{\Var(X)} \cdot \sqrt{\Var(Y)}}
-= \frac{\operatorname{Cov}(X,Y)}{\sigma_X\cdot\sigma_Y} \\
-\rho_{XY} \in [-1,1] &  \text{\small als dimensionsloses Mass des linearen Zusammenhanges} \\
-\rho_{XY} &=\pm 1 \quad \iff \quad Y = a\pm bX \quad \text{mit }b>0, a \in \R
-\end{align*}
-\end{method}
-
-\begin{thm}{Rechenregeln}
-\begin{align*}
-\operatorname{Cov}(X,Y) &= \E(X\cdot Y) - \E(X) \cdot \E(Y) \\
-\operatorname{Cov}(\cdot,\cdot) &\text{ ist bilinear:} \quad \\
-\operatorname{Cov}(a+bX,c+dY) &= b\cdot d \cdot \operatorname{Cov} (X,Y) \\
-\operatorname{Cov}(X+Y,Z) &= \operatorname{Cov}(X,Z)+\operatorname{Cov}(Y,Z) \\
-\Var(X+Y) &= \Var(X)+\Var(Y)+2 \cdot \operatorname{Cov}(X,Y) \\
-\operatorname{Cov} &\text{ ist symmetrisch}
-\end{align*}
-Sind die Zufallsvariablen $X$ und $Y$ unabhängig, so gilt $\operatorname{Cov}(X,Y) = \operatorname{Corr}(X,Y) = 0$.
-Die Umkehrung gilt jedoch im Allgemeinen nicht.
-\end{thm}
-
-
-
-\begin{mdframed}
-	\centering
-{unabhängig $\implies$ paarweise unabhängig $\implies$ unkorreliert}
-\end{mdframed}
 
 
 \subsection*{Bedingte Verteilungen}
@@ -542,6 +478,8 @@ Mit Parameter $\lambda>0$ auf $\W(X) = \N_0$ schreiben wir $X\sim \mathcal{P}(\l
 
 
 
+\newpage
+
 \section{Allgemeine Zufallsvariable}
 
 
@@ -574,6 +512,70 @@ Mit Parameter $\lambda>0$ auf $\W(X) = \N_0$ schreiben wir $X\sim \mathcal{P}(\l
 
 Umgekehrt kann man aus einer messbaren Funktion $f:\R\to[0,\infty)$ mit $\int_{-\infty}^\infty f(s)ds = 1$ eine Zufallsfariable $X$ konstruieren.
 \end{method}
+
+
+
+\subsection*{Gemeinsame Verteilungen, unabhängige Zufallsvariablen}
+
+
+\begin{method}{Gemeinsame Verteilungsfunktion}
+	Die gemeinsame Verteilfunktion von $n$ Zufallsvariablen $X_1,\ldots, X_n$ ist die Abbildung $F:\R^n \to [0,1]$ mit
+	
+	\begin{align*}
+	F(x_1,\ldots,x_n) &:= P[X_1 \leq x_1, \ldots , X_n \leq x_n]\\
+	F(x_1,\ldots,x_n) &:= \int_{-\infty}^{x_1}\cdots \int_{-\infty}^{x_n}f(t_1,\ldots,t_n)dt_n\ldots dt_1
+	\end{align*}
+	
+	dabei ist $f:\R^n \to [0,\infty)$ die gemeinsame Dichte für welche gilt:
+	\begin{itemize}
+		\item $f(x_1,\ldots,x_n)\geq 0$ und $=0$ ausserhalb von $\W(X_1,\ldots,X_n)$
+		\item $\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}f(t_1,\ldots,t_n)dt_n\ldots dt_1 = 1$
+		\item $P[(X_1,\ldots X_n)\in A] = \int_{(x_1,\ldots,x_n)\in A}f(t_1,\ldots,t_n)dt_n\ldots dt_1$
+	\end{itemize} 
+	TODO: muss ich das dritte Prüfen?
+\end{method}
+
+\begin{method}{Randverteilung} Haben $X,Y$ die gemeinsame Dichtefunktion $F$, so ist die Funktion $F_X : \R \to [0,1]$ mit 
+	
+	\begin{align*}
+	F_X(x) := P[Y \leq y] = P[x\leq Y, Y < \infty] = \lim_{y \to \infty} F(x,y)
+	\end{align*}
+	die sogenannte Randverteilung von $X$.
+	
+	Falls die Dichte $f(x,y)$ existiert so gilt:
+	
+	\begin{align*}
+	f_X(x) &= \int_{-\infty}^{\infty}f(x,y) dy\\
+	f_X(x) &= \frac{d}{dx}F_X(x) = \frac{d}{dx}\lim_{y \to \infty} F(x,y)
+	\end{align*}
+	
+\end{method}
+
+\begin{method}{Unabhängigkeit von Zufallsvariablen} Die Zufallsvariablen $X_1,\ldots, X_n$ heissen unabhängig, falls gilt
+	
+	\begin{align*}
+	F(x_1,\ldots x_n) &= F_{X_1}(x_1) \cdots F_{X_n}(x_n) \quad \text{respektive:}\\
+	f(x_1,\ldots x_n) &= f_{X_1}(x_1) \cdots f_{X_n}(x_n) \quad \forall x_1,\ldots x_n
+	\end{align*}
+\end{method}
+
+
+\subsection*{Transformation von stetigen Zufallsvariablen}
+
+Angenommen wir haben die Dichte $f(x,y)$ gegeben und wir suchen die Verteilfunktion und Dichte von $Z = X + Y$. Wir haben $F_Z(z) = P[Z \leq z] = P[X+Y\leq z]$. Nun definieren wir $A_z = \{(x,y)\in\R^2|x+y\leq z\}$. Es gilt nun:
+
+\begin{align*}
+F_Z(z) = P[(X,Y)\in A_z] &= \int_{A_z} \int f(x,y) dy dx\\
+&= \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f(x,y) dy dx
+\end{align*}
+
+Sowie $f_Z(z) = \frac{d}{dz} F_Z(z)$.
+
+
+
+
+\TODO{serie 5 aufgabe 2 - transformation}
+
 
 
 \subsection*{Wichtige stetige Verteilungen}
@@ -637,30 +639,127 @@ Problem: Das Integral ist mühsam. Trick Wir plotten die Dichte $\varphi(t)$ sow
 
 Es gilt $\Phi(-x) = 1 - \Phi(x)$ sowie ${\Phi^{-1}(x) = -\Phi^{-1}(1-x)}$
 
+\subsubsection*{Paretoverteilung}
+Die Paretoverteilte Variable $X\sim\operatorname{Par}(x_0,\alpha)$ mit 
 
-\subsection*{Kennzahlen stetiger Zufallsvariablen}
+\begin{align*}
+f_X(t) &= \begin{cases}
+\frac{\alpha x_0 ^\alpha}{x^{\alpha+1}} \ \text{ für } x \geq x_0 \\
+0 \text{ sonst}
+\end{cases}
+& 
+F_X(t) &= \begin{cases}
+1-\left(\frac{x}{x_0}\right)^{-\alpha} \text{ für } x \geq x_0\\
+0 \ \text{ sonst}
+\end{cases}
+\end{align*}
+
+\begin{align*}
+\E[X] &= \begin{cases}
+x_0 \frac{\alpha}{\alpha - 1}\ \text{ für } \alpha > 1 \\
+\infty \ \text{ sonst}
+\end{cases}
+& 
+\Var[X] &= \begin{cases}
+\frac{x_0 ^2 \alpha}{(\alpha-1)^2(\alpha-2)} \text{ für } \alpha > 2\\
+\infty \ \text{ für } 1 < \alpha \leq 2
+\end{cases}
+\end{align*}
+
+Diese Verteilung modelliert zum Beispiel die Krankenkosten eines Versicherten pro Jahr.
+
+\newpage 
+\section{Kennzahlen von Zufallsvariablen}
+
 
 \begin{method}{Erwartungswert}
+	\begin{itemize}
+		\item Diskret
+		\begin{align*}
+	\mu = \E[X] &= \sum_{x_i \in \mathcal{W}(X)} x_i \cdot P(X=x_i) = \sum_{x_i \in \mathcal{W}(X)} x_i \cdot p(x_i) \\
+	\E(g(X)) &= \sum_{x_i \in \mathcal{W}(X)} g(x_i) \cdot P(X=x_i)
+	\end{align*}
+		\item Stetig:
 \begin{align*}
-\mu = \E(X) &= \int_{-\infty}^{\infty} x \cdot f_X(x) \; \rmd x \\
-\E(g(X)) &= \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \; \rmd x 
+\mu = \E[X] &= \int_{-\infty}^{\infty} x \cdot f_X(x) \; \rmd x
 \end{align*}
+		
+		\item Allgemein:
+		\begin{align*}
+	\E(aX+b) &= a\E[X] + b\\
+	\E \left( \sum_{i=1}^n X_i \right) &= \sum_{i=1}^n \E(X_i)
+		\end{align*}	
+		Sind $X_i$, $X$ und $Y$ unabhängig, so gilt
+		\begin{align*}
+		\E(XY) &= \E[X]\E(Y)\\
+		\E \left( \prod X_i \right) &= \prod \E(X_i)\\
+		\end{align*}
+		
+	\end{itemize}
+	
+
 \end{method}
 
 
 \begin{method}{Varianz}
-\begin{align*}
-\Var(X) =  \E{(X^2)} - \E{(X)}^2  &= \int_{-\infty}^{\infty} (x - \E(X))^2 \cdot f_X(x) \; \rmd x \\
-\Var(aX+b) &= a^2\Var(X) 
+\begin{itemize}
+\item Diskret
+		\begin{align*}
+		\Var[X] &= \sum_{x_i \in \mathcal{W}(X)} (x_i - \mu)^2 \cdot P(X=x_i) \\
+\Var[X] &= \E((X - \mu)^2) = \E(X^2) - \E[X]^2
+	\end{align*}
+\item Stetig:
+	\begin{align*}
+\Var[X] =  \E{[X^2]} - \E{[X]}^2  &= \int_{-\infty}^{\infty} (x - \E[X])^2 \cdot f_X(x) \; \rmd x
 \end{align*}
+
+\item Allgemein:
+\begin{align*}
+	\Var(aX+b) &= a^2 \cdot \Var[X]\\
+	\Var[X] &= E(X^2)-E[X]^2\\
+	\Var[X] &= E((X-\mu)^2)\\
+	\Var(aX+bY+c) &= a^2\Var[X] +b^2\Var(Y) + 2 ab \operatorname{Cov}(X,Y)
+\end{align*}
+
+
+Für unkorrelierte Zufallsvariablen $X_i$ gilt
+\begin{align*}
+\Var \left( \sum_{i=1}^n X_i \right) &= \sum_{i=1}^n \Var(X_i)\\
+\Var (\overline X_n) &= \frac{\sigma^2}{n}
+\end{align*}
+
+
+	
+\end{itemize}
 \end{method}
+
+
+\textbf{Beispiel (nicht konvergenter Erwartungswert):}
+Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
+
+\begin{align*}
+f_X(t) &= \frac{1}{\pi} \frac{1}{1+t^2}
+& 
+F_X(t) &= \frac{1}{2} + \frac{1}{\pi}\arctan(t)
+\end{align*}
+
+Dann gilt:
+
+\begin{align*}
+\int_{-\infty}^\infty |x|f_X(x) dx &= \lim\limits_{b\to\infty} \frac{1}{\pi}\log(1+b^2) = +\infty
+\end{align*}
+
+
+
+
 
 \begin{method}{Standardabweichung}
 \begin{align*}
-&\sigma = \sqrt{\Var(X)} \\
+&\sigma = \sqrt{\Var[X]} \\
 &\sigma_{aX+b} = |a|\cdot \sigma_X
 \end{align*}
 \end{method}
+
 
 \begin{method}{$\alpha$-Quantile, Median}
 \begin{align*}
@@ -680,21 +779,44 @@ Y = aX+b \quad &\implies \quad f_Y(x) = \tfrac{1}{|a|} f_X\left(\tfrac{x-b}{|a|}
 
 
 
-\textbf{Beispiel (nicht konvergenter Erwartungswert):}
-Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
+\subsection*{Kovarianz und Korrelation}
 
-\begin{align*}
-f_X(t) &= \frac{1}{\pi} \frac{1}{1+t^2}
-& 
-F_X(t) &= \frac{1}{2} + \frac{1}{\pi}\arctan(t)
-\end{align*}
 
-Dann gilt:
+\begin{method}{Kovarianz}
+	\begin{align*}	
+	\operatorname{Cov}(X,Y) &= \E\left(\left(X-\E[X]\right)\left(Y-E(Y)\right)\right) \\
+	\operatorname{Cov}(X,X) &= \Var(X)
+	\end{align*}
+\end{method}
 
-\begin{align*}
-	\int_{-\infty}^\infty |x|f_X(x) dx &= \lim\limits_{b\to\infty} \frac{1}{\pi}\log(1+b^2) = +\infty
-\end{align*}
+\begin{method}{Korrelation}
+	\begin{align*}
+	\operatorname{Corr}(X,Y) &= \rho_{XY} = \frac{\operatorname{Cov}(X,Y)}{\sqrt{\Var(X)} \cdot \sqrt{\Var(Y)}}
+	= \frac{\operatorname{Cov}(X,Y)}{\sigma_X\cdot\sigma_Y} \\
+	\rho_{XY} \in [-1,1] &  \text{\small als dimensionsloses Mass des linearen Zusammenhanges} \\
+	\rho_{XY} &=\pm 1 \quad \iff \quad Y = a\pm bX \quad \text{mit }b>0, a \in \R
+	\end{align*}
+\end{method}
 
+\begin{thm}{Rechenregeln}
+	\begin{align*}
+	\operatorname{Cov}(X,Y) &= \E(X\cdot Y) - \E[X] \cdot \E(Y) \\
+	\operatorname{Cov}(\cdot,\cdot) &\text{ ist bilinear:} \quad \\
+	\operatorname{Cov}(a+bX,c+dY) &= b\cdot d \cdot \operatorname{Cov} (X,Y) \\
+	\operatorname{Cov}(X+Y,Z) &= \operatorname{Cov}(X,Z)+\operatorname{Cov}(Y,Z) \\
+	\Var(X+Y) &= \Var(X)+\Var(Y)+2 \cdot \operatorname{Cov}(X,Y) \\
+	\operatorname{Cov} &\text{ ist symmetrisch}
+	\end{align*}
+	Sind die Zufallsvariablen $X$ und $Y$ unabhängig, so gilt $\operatorname{Cov}(X,Y) = \operatorname{Corr}(X,Y) = 0$.
+	Die Umkehrung gilt jedoch im Allgemeinen nicht.
+\end{thm}
+
+
+
+\begin{mdframed}
+	\centering
+	{unabhängig $\implies$ paarweise unabhängig $\implies$ unkorreliert}
+\end{mdframed}
 
 
 \begin{thm}{Transformation von Zufallsvariablen}
@@ -713,72 +835,30 @@ Dann gilt:
 
 
 
-\subsection*{Gemeinsame Verteilungen, unabhängige Zufallsvariablen}
 
+\subsection*{Mehrere i.i.d Zufallsvariablen}
 
-\begin{method}{Gemeinsame Verteilungsfunktion}
-	Die gemeinsame Verteilfunktion von $n$ Zufallsvariablen $X_1,\ldots, X_n$ ist die Abbildung $F:\R^n \to [0,1]$ mit
-	
-	\begin{align*}
-		F(x_1,\ldots,x_n) &:= P[X_1 \leq x_1, \ldots , X_n \leq x_n]\\
-		F(x_1,\ldots,x_n) &:= \int_{-\infty}^{x_1}\cdots \int_{-\infty}^{x_n}f(t_1,\ldots,t_n)dt_n\ldots dt_1
-	\end{align*}
-	
-	dabei ist $f:\R^n \to [0,\infty)$ die gemeinsame Dichte für welche gilt:
-	\begin{itemize}
-		\item $f(x_1,\ldots,x_n)\geq 0$ und $=0$ ausserhalb von $\W(X_1,\ldots,X_n)$
-		\item $\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}f(t_1,\ldots,t_n)dt_n\ldots dt_1 = 1$
-		\item $P[(X_1,\ldots X_n)\in A] = \int_{(x_1,\ldots,x_n)\in A}f(t_1,\ldots,t_n)dt_n\ldots dt_1$
-	\end{itemize} 
-TODO: muss ich das dritte Prüfen?
-\end{method}
+Seien $X_1,\ldots,X_n \overset{iid}{\sim} F$. Dann ist $Y=g(X_1,\ldots,X_n)$ mit $g: \R^n \longrightarrow \R$ eine neue Zufallsvariable.
+Wichtige Vertreter sind die Summe von Zufallsvariablen und die relative Häufigkeit.
+\[ S_n = X_1 + \ldots + X_n \qquad \qquad\overline{X}_n = \dfrac{1}{n} S_n \]
+Die Verteilungen von $S_n$ und $\overline X_n$ sind im allgemeinen aber schwierig zu bestimmen.
 
-\begin{method}{Randverteilung} Haben $X,Y$ die gemeinsame Dichtefunktion $F$, so ist die Funktion $F_X : \R \to [0,1]$ mit 
-	
+\subsubsection*{Bekannte Verteilungen}
 \begin{align*}
-	F_X(x) := P[Y \leq y] = P[x\leq Y, Y < \infty] = \lim_{y \to \infty} F(x,y)
+%X_i \overset{iid}{\sim} \operatorname{Exponential}(\lambda) \; \Rightarrow & \; S_n \sim \operatorname{Exponential}(n\cdot \lambda) \\
+X_i \overset{iid}{\sim} \operatorname{Poisson}(\lambda_i) \; \Rightarrow & \; S_n \sim \operatorname{Poisson}({\textstyle \sum \lambda_i}) \\
+X_i \overset{iid}{\sim} \operatorname{Bernoulli}(p) \; \Rightarrow & \; S_n \sim \operatorname{Binomial}(n,p)\\
+X_i \overset{iid}{\sim} \mc N(\mu, \sigma^2) \; \Rightarrow & \; S_n \sim \mc N(n \cdot \mu, n \cdot \sigma^2)
 \end{align*}
-die sogenannte Randverteilung von $X$.
-
-Falls die Dichte $f(x,y)$ existiert so gilt:
-
+\subsubsection*{Erwartungswerte und Varianzen}
 \begin{align*}
-	f_X(x) &= \int_{-\infty}^{\infty}f(x,y) dy\\
-	f_X(x) &= \frac{d}{dx}F_X(x) = \frac{d}{dx}\lim_{y \to \infty} F(x,y)
+\E(S_n) &= n \cdot \E(X_1) & \E(\overline{X}_n) &= \E(X_1) \\
+\Var(S_n) &= n \cdot \Var(X_1) & \Var(\overline{X}_n) &= \tfrac{1}{n} \Var(X_1) \\
+\sigma_{S_n} &= \sqrt{n} \cdot \sigma_{X_1} & \sigma_{\overline{X}_n} &= \tfrac{1}{\sqrt{n}} \cdot \sigma_{X_1}
 \end{align*}
 
-\end{method}
 
-
-\textbf{Median einer Verteilung}
-
-Wir nennen $m_X \in \W(X)$ mit $F_X(m_X) = {1 \over 2}$ den Median der Verteilung $X$.
-
-\begin{method}{Unabhängigkeit von Zufallsvariablen} Die Zufallsvariablen $X_1,\ldots, X_n$ heissen unabhängig, falls gilt
-	
-	\begin{align*}
-F(x_1,\ldots x_n) &= F_{X_1}(x_1) \cdots F_{X_n}(x_n) \quad \text{respektive:}\\
-f(x_1,\ldots x_n) &= f_{X_1}(x_1) \cdots f_{X_n}(x_n) \quad \forall x_1,\ldots x_n
-	\end{align*}
-\end{method}
-
-
-\subsection*{Transformation von stetigen Zufallsvariablen}
-
-Angenommen wir haben die Dichte $f(x,y)$ gegeben und wir suchen die Verteilfunktion und Dichte von $Z = X + Y$. Wir haben $F_Z(z) = P[Z \leq z] = P[X+Y\leq z]$. Nun definieren wir $A_z = \{(x,y)\in\R^2|x+y\leq z\}$. Es gilt nun:
-
-\begin{align*}
-	F_Z(z) = P[(X,Y)\in A_z] &= \int_{A_z} \int f(x,y) dy dx\\
-	&= \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f(x,y) dy dx
-\end{align*}
-
-Sowie $f_Z(z) = \frac{d}{dz} F_Z(z)$.
-
-
-
-
-\TODO{serie 5 aufgabe 2 - transformation}
-
+\newpage
 
 \section*{Ungleichungen und Grenzwertsätze}
 
