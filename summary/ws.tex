@@ -456,7 +456,7 @@ der Gegenstände vom Typ 1 in dieser Stichprobe vom Umfang $m$. Dann hat $X$ ein
 hypergeometrische Verteilung mit Parametern $n,m,r$ mit $\W(X) = \{0, 1, \ldots, \min(m, r)\}$ sowie
 
 \begin{align*}
-	pX(k) &= \frac{{r\choose k} {n-r \choose m-k}}{{n \choose m}}
+	p_X(k) &= \frac{{r\choose k} {n-r \choose m-k}}{{n \choose m}}
 \end{align*}
 
 \begin{align*}
@@ -467,7 +467,7 @@ hypergeometrische Verteilung mit Parametern $n,m,r$ mit $\W(X) = \{0, 1, \ldots,
 
 \subsubsection*{Poissonverteilung}
 
-Mit Parameter $\lambda>0$ auf $\W(X) = \N_0$ schreiben wir $X\sim {P}(\lambda)$
+Mit Parameter $\lambda>0$ auf $\W(X) = \N_0$ schreiben wir $X\sim {\operatorname{Pois}}(\lambda)$
 
 \begin{align*}
 	p_X(k) &= P[X = k] = e^{-\lambda} \frac{\lambda^k}{k!}
@@ -640,6 +640,8 @@ Problem: Das Integral ist mühsam. Trick Wir plotten die Dichte $\varphi(t)$ sow
 
 Es gilt $\Phi(-x) = 1 - \Phi(x)$ sowie ${\Phi^{-1}(x) = -\Phi^{-1}(1-x)}$
 
+\TODO{Beispiel mir transformation}
+
 \subsubsection*{Paretoverteilung}
 Die Paretoverteilte Variable $X\sim\operatorname{Par}(x_0,\alpha)$ mit 
 
@@ -734,6 +736,7 @@ Für unkorrelierte Zufallsvariablen $X_i$ gilt
 \end{itemize}
 \end{method}
 
+\TODO{serie 9: transformation in varianz}
 
 \textbf{Beispiel (nicht konvergenter Erwartungswert):}
 Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
