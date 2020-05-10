@@ -976,6 +976,67 @@ Seien $X_1,\ldots,X_n$ i.i.d. Zufallsvariablen für welche die momenterzeugende 
 	\end{align*}
 \end{method}
 
+
+\part{Statistik}
+
+\section{Schätzer}
+\subsection*{Grundbegriffe}
+
+\begin{itemize}
+	\item $\vartheta =  (\vartheta_1,\ldots,\vartheta_n)$ ist ein Vektor an Parameter die wir gerne Schätzen möchten. Sie müssen Teil von der Dichtefunktion sein.
+	\item $T = (T_1,\ldots,T_n)$ sind Schätzer, das sind Zufallsvariablen die $\vartheta$ bestmöglichst schätzen. Dabei gilt $T_i = t_i(X_1,\ldots,X_n)$ für ein geeignetes $t_i:\R^n \to \R$
+	\item Wir nennen $x_1,\ldots,x_n$ Daten/Realisationen von Zufallsvariablen mit $x_i = X_i(\omega)$.
+	\item $T_i(\omega) = t_i(X_1(\omega), \ldots, X_n(\omega)) = t_i(x_1,\ldots,x_n) $ heisst Schätzwert.
+\end{itemize}
+
+\subsection*{Gütebegriffe}
+
+\begin{method}{Erwartungstreue \& Bias}
+	\begin{align*}
+	\E_\vartheta[T] = \vartheta &\iff \text{ Erwartungstreu}\\
+	bias &= \E_\vartheta[T] - \vartheta
+	\end{align*}
+\end{method}
+
+\begin{method}{Konsistenz}
+	Wir nennen eine Folge von Schätzern $T^(n)$ konsistent für $\vartheta$ falls
+	\begin{align*}
+\lim_{n\to\infty} P_\vartheta [|T^{(n)} - \vartheta| > \epsilon] = 0 \quad \forall \epsilon > 0
+	\end{align*}
+\end{method}
+
+
+
+\begin{method}{Mean Squared Error (MSE)}
+\begin{align*}
+	MSE_\vartheta[T] &= \E_\vartheta [(T-\vartheta)^2]= \Var_\vartheta[T] + (E_\vartheta [T]-\vartheta)^2\\
+	&=  \Var_\vartheta[T] + (bias^2)
+\end{align*}
+\end{method}
+
+
+
+
+\subsection*{Maximum-Likelihood-Methode}
+
+\begin{method}{Maxmium-Likelihood-Schätzer}
+Seien $X_1,\ldots X_n$ Zufallsvariablen von $n$ Stichproben und $x_1,\ldots,x_n$ die Realisationen dieser Zufallsvariablen.	
+	
+Wir definieren die Likelihood-Funktion als
+
+\begin{align*}
+	L(x_1,\ldots x_n;\vartheta) &= \begin{cases}
+	p(x_1,\ldots,x_n;\vartheta) \quad \text{ diskreter Fall}\\
+	f(x_1,\ldots,x_n;\vartheta) \quad \text{ stetiger Fall}\\
+	\end{cases}
+\end{align*}
+Wenn die $X_1,\ldots X_n$ i.i.d. sind, dann verwenden wir oft die log-likelihood-Funktion $\log(L)$.
+
+Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. eine Funktion wie $\vartheta = \frac{1}{n}\sum_{i=1}^{n}x_i$, wir ersetzten nun $x_i$ durch $X_i$ und $\theta$ durch $T$ zu $T = \frac{1}{n}\sum_{i=1}^{n}X_i$
+\end{method}
+
+\TODO{add example p130 ff.}
+
 \section {Kombinatorik}
 
 Wir definieren die 
@@ -996,8 +1057,6 @@ Wir definieren die
 	Dies ist die Anzahl der Variationen (mit Wiederholung) und ist $n^m$
 \end{itemize}
 
-
-\part{Statistik}
 
 \vfill
 
