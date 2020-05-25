@@ -940,14 +940,15 @@ Zusammengefasst: Beim schwachen ist die Chance von nichtkonvergenz sehr klein, b
 	Wobei $\Phi$ die Verteilungsfunktion von $\mathcal{N}(0,1)$ ist.	
 \end{method}
 
-In Praxis definiert man $S_n^* = \frac{S_n- n\mu}{\sigma \sqrt{n}} = \frac{S_n-\E[S_n]}{\sqrt{\Var[S_n]}}$ da $\E[S_n] = n\mu$ sowie $\Var[S_n] = n\sigma^2$.
+In Praxis definiert man $S_n^* = \frac{S_n- n\mu}{\sigma \sqrt{n}} = \frac{S_n-\E[S_n]}{\sqrt{\Var[S_n]}}$ da $\E[S_n] = n\mu$ sowie $\Var[S_n] = n\sigma^2$. Als auch definieren wir $\overline{X_n} = \frac{1}{n}S_n$.
 
 Nun gilt
 
 \begin{align*}
 	P[S_n^*\leq x] &\approx \Phi(x) \quad \text{ für $n$ gross}\\
 	S_n^* &\stackrel{\text{approx}}{\sim} \mathcal{N}(0,1)\\
-	S_n &\stackrel{\text{approx}}{\sim} \mathcal{N}(n\mu, n\sigma^2)
+	S_n &\stackrel{\text{approx}}{\sim} \mathcal{N}(n\mu, n\sigma^2)\\
+	\overline{X_n} &\stackrel{\text{approx}}{\sim} \mathcal{N}(\mu, \frac{1}{n}\sigma^2)
 \end{align*}
 
 \subsection*{Grosse Abweichungen und Chernoff-Schranken}
@@ -1032,7 +1033,7 @@ Wir definieren die Likelihood-Funktion als
 \end{align*}
 Wenn die $X_1,\ldots X_n$ i.i.d. sind, dann verwenden wir oft die log-likelihood-Funktion $\log(L)$.
 
-Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. eine Funktion wie $\vartheta = \frac{1}{n}\sum_{i=1}^{n}x_i$, wir ersetzten nun $x_i$ durch $X_i$ und $\theta$ durch $T$ zu $T = \frac{1}{n}\sum_{i=1}^{n}X_i$
+Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. eine Funktion wie $\vartheta = \frac{1}{n}\sum_{i=1}^{n}x_i$, wir ersetzten nun $x_i$ durch $X_i$ und $\vartheta$ durch $T$ zu $T = \frac{1}{n}\sum_{i=1}^{n}X_i$
 \end{method}
 
 \TODO{add example p130 ff.}
