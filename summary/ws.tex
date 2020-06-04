@@ -1031,7 +1031,10 @@ Wir definieren die Likelihood-Funktion als
 	f(x_1,\ldots,x_n;\vartheta) \quad \text{ stetiger Fall}\\
 	\end{cases}
 \end{align*}
-Wenn die $X_1,\ldots X_n$ i.i.d. sind, dann verwenden wir oft die log-likelihood-Funktion $\log(L)$.
+
+Wenn die $X_1,\ldots,X_n$ i.i.d. sind, so gilt $p(x_1,\ldots,x_n;\vartheta) = \prod_{i=1}^{n}p_X(x_i;\vartheta)$ respektive $f(x_1,\ldots,x_n;\vartheta) = \prod_{i=1}^{n}f_X(x_i;\vartheta)$
+
+Wenn die $X_1,\ldots X_n$ i.i.d. sind, dann verwenden wir oft die log-likelihood-Funktion $\log(L)$ welche das $\prod$ in ein $\sum$ verwandelt.
 
 Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. eine Funktion wie $\vartheta = \frac{1}{n}\sum_{i=1}^{n}x_i$, wir ersetzten nun $x_i$ durch $X_i$ und $\vartheta$ durch $T$ zu $T = \frac{1}{n}\sum_{i=1}^{n}X_i$
 \end{method}
