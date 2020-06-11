@@ -1041,6 +1041,73 @@ Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. 
 
 \TODO{add example p130 ff.}
 
+
+
+\subsection*{Momentenschätzer}
+
+\begin{method}{Momentenschätzer}
+	
+	Die Idee ist, dass wir ein Gleichungssystem auflösen bei welchen:
+	\begin{itemize}
+\item Das $j$-te Moment ${\displaystyle m_{j}(\vartheta )=\operatorname {E} _{\vartheta }(X_{1}^{j})}$
+\item Das $j$-te Stichprobenmoment ${\displaystyle m_{j}(x)={\frac {1}{n}}\sum _{i=1}^{n}x_{i}^{j}}$
+	\end{itemize}
+	
+	Dann setzen wir die Momente gleich und lösen nach $\vartheta$ auf.
+	
+\end{method}
+
+
+\begin{thm}{Zentrale Lemmata}
+	Seien $X_1,\ldots, X_n$ i.i.d. $\sim \mathcal{N}(\mu,\sigma^2)$ dann gilt:
+	
+	\begin{itemize}
+		\item $\overline{X_n}$ ist Normalverteilt $\sim \mathcal{N}(\mu,\frac{1}{n}\sigma^2)$ und $\frac{\overline{X_n} - \mu}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1)$
+		\item $\frac{n-1}{\sigma^2}S^2 = \frac{1}{\sigma^2}\sum_{i=1}^{n}(X_i - \overline{X_n})$ ist $\chi^2$ Verteilt mit $n-1$ Freiheitsgraden.
+		\item $\overline{X_n}$ und $S^2$ sind unabhängig.
+		\item Der Quotient
+		\begin{align*}
+\frac{\overline{X_n}-\mu}{S/\sqrt{n}} = \frac{\frac{\overline{X_n} - \mu}{\sigma / \sqrt{n}}}{S/\sigma} = \frac{\frac{\overline{X_n} - \mu}{\sigma / \sqrt{n}}}{\sqrt{\frac{1}{n-1} \frac{n-1}{\sigma^2} S^2}}
+		\end{align*}
+		ist $t$-verteilt mit $n-1$ Freiheitsgraden.
+	\end{itemize}
+Dabei galt $\overline{X_n} = \frac{1}{n}\sum_{i=1}^{n} X_i$ sowie $S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i -\overline{X_n})^2$ die empirische Stichprobenvarianz.
+\end{thm}
+
+
+
+\section{Konfidenzbereiche}
+
+\begin{method}{Konfidenzbereich}
+Ein Konfidenzbereich ist eine Menge $C(X_1,\ldots,X_n) \subseteq \Omega$ zum Niveau $1-\alpha$ falls gilt
+
+\begin{align*}
+	P_{\vartheta} \left[\vartheta \in C(X_1,\ldots,X_n) \right] \geq 1 - \alpha \quad \text{für alle } \vartheta \in \Omega
+\end{align*}
+\end{method}
+
+\textbf{Beispiel}
+
+Angenommen wir haben 8 Gewichte gegeben die wir als Realisationen von $X_1,\ldots,X_8$ i.i.d. $\sim \mathcal{N}(\mu,\sigma^2)$. Als Schätzer verwenden wir $\mu = \overline{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i$ und als Stichprobenvarianz $S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X_n})^2$.
+
+Wir machen den Ansatz $C(X_1,\ldots,X_n) \ = \left[\overline{X_n} - \cdots , \overline{X_n} + \cdots \right]$ und wollen erreichen dass $1-\alpha \leq 	P_{\vartheta} \left[\vartheta \in C(X_1,\ldots,X_n) \right] = 	P_{\vartheta} \left[\mu  \in \left[\overline{X_n} - \cdots , \overline{X_n} + \cdots\right] \right] = P_{\vartheta} \left[ |\overline{X_n} - \mu| \leq \cdots \right]$
+
+Da $\frac{\overline{X_n} - \mu}{S/\sqrt{n}} \sim t_{n-1}$ brauchen wir $\frac{...}{S/\sqrt{n}} = t_{n-1,1-\frac{\alpha}{2}}$.
+
+Dies gibt uns dann das Konfidentintervall für $\mu$ zum Niveau $1-\alpha$:
+
+\begin{align*}
+C(X_1,\ldots,X_n) &= \left[ \overline{X_n} -t_{n-1,1-\frac{\alpha}{2}}\frac{S}{\sqrt{n}} , \overline{X_n} +t_{n-1,1-\frac{\alpha}{2}}\frac{S}{\sqrt{n}}   \right]
+\end{align*}
+
+Um ein Konfidenzintervall für $\sigma^2$ zu konstruieren verwenden wir $\frac{1}{\sigma^2} (n-1)S^2 = \frac{1}{\sigma^2}\sum_{i=1}^{n} (X_i- \overline{X_n})^2 \sim \chi_{n-1}^2$
+
+Wir rechnen wieder $1-\alpha = P_{\vartheta} \left[ \chi_{n-1,\frac{\alpha}{2}}^2 \leq \frac{1}{\sigma^2} (n-1)S^2 \leq \chi_{n-1,1-\frac{\alpha}{2}}^2 \right] = P_{\vartheta} \left[ \frac{(n-1)S^2}{\chi_{n-1,1-\frac{\alpha}{2}}^2} \leq \sigma^2 \leq \frac{(n-1)S^2}{\chi_{n-1,\frac{\alpha}{2}}^2}  \right]$
+
+Dies impliziert 
+\begin{align*}
+	C(X_1,\ldots,X_n) = \left[ \frac{(n-1)S^2}{\chi_{n-1,1-\frac{\alpha}{2}}^2} , \frac{(n-1)S^2}{\chi_{n-1,\frac{\alpha}{2}}^2}\right]
+\end{align*}
 \section {Kombinatorik}
 
 Wir definieren die 
