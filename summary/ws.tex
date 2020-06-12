@@ -1111,6 +1111,48 @@ R(x_1,\ldots,x_n) = \frac{\sup_{\vartheta\in \Theta_0}L(x_1,\ldots,x_n;\vartheta
 \tilde{R}(x_1,\ldots,x_n) = \frac{\sup_{\vartheta\in \Theta_0}L(x_1,\ldots,x_n;\vartheta_0)}{\sup_{\vartheta\in \Theta_A\cup \Theta_0}L(x_1,\ldots,x_n;\vartheta_A)}\\
 \end{align*}
 
+\TODO{add example}
+
+
+\subsection*{Statistische Testverfahren}
+
+
+\begin{method}{$z$-Test}
+	Ein Test für den Erwartungswert bei bekannter Varianz. Seien $X_1,\ldots,X_n\sim \mathcal{N}(\mu,\sigma^2)$ unter $P_{\vartheta}$ mit bekanntem $\sigma^2$. Es ist $H_0 : \vartheta = \vartheta_0$ Möglich Variationen sind:
+	\begin{itemize}
+		\item $H_A: \vartheta > \vartheta_0$: $K = (c_>,\infty)$, $c_> = z_{(1-\alpha)}$
+		\item $H_A: \vartheta < \vartheta_0$: $K = (-\infty,c_<)$, $c_< = z_\alpha$.
+		\item $H_A: \vartheta > \vartheta_0$: $K = (-\infty,-c_{\neq}) \cup (c_{\neq},\infty)$, $c_{neq} = z_{1-\frac{\alpha}{2}}$.
+	\end{itemize}
+Mit $T=\frac{\overline{X_n}-\vartheta_0}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1)$ sowie $z_{x} = \Phi^{-1}(x)$.
+\end{method}
+
+
+\begin{method}{$t$-Test}
+	Ein Test für den Erwartungswert bei unbekannter Varianz. Seien $X_1,\ldots,X_n\sim \mathcal{N}(\mu,\sigma^2)$ unter $P_{\vec{\vartheta}}$ mit $\vec{\vartheta}=(\mu,\sigma^2)$. Wir haben $\Theta_0= \{\sigma\}\times(0,\infty)$. Die Teststatistik ist gegeben durch $T = \frac{\overline{X_n}- \mu_0}{S/\sqrt{n}} \sim t_{n-1}$ mit $S^2=\frac{1}{n-1}\sum_{i=1}^{n}\left(X_i-\overline{X_n}\right)^2$ für $\sigma^2$
+	
+	\begin{itemize}
+		\item $H_A: \vartheta > \vartheta_0$: $K = (c_>,\infty)$, $c_> = t_{n-1,1-\alpha}$
+		\item $H_A: \vartheta < \vartheta_0$: $K = (-\infty,c_<)$, $c_< = t_{n-1,\alpha} = -t_{n-1,1-\alpha}$.
+		\item $H_A: \vartheta > \vartheta_0$: $K = (-\infty,-c_{\neq}) \cup (c_{\neq},\infty)$, $c_{neq} = t_{n-1,1-\frac{\alpha}{2}}$.
+	\end{itemize}
+	wobei $t_{m,\gamma}$ das $\gamma$-Quantil der $t_m$ Verteilung ist.
+\end{method}
+
+\begin{method}{Gepaarte Zweistichproben-Test bei Normalverteilung}
+	Wenn $X_1,\ldots,X_n$ i.i.d $\sim \mathcal{N}(\mu_X,\sigma^2)$ sowie $Y_1,\ldots,Y_n$ i.i.d $\sim \mathcal{N}(\mu_Y,\sigma^2)$ mit gleicher Anzahl Proben und gleicher Varianz, so definiert man $Z_i = X_i-Y_i$ die unter $P\vartheta$ i.i.d zu $\sim \mathcal{N}(\mu_X-\mu_Y,2\sigma^2)$ sind. Dann verwende entweder $z$-Test oder $t$-Test.
+\end{method}
+
+
+\begin{method}{Ungepaarter Zweistichproben-Test bei Normalverteilung}
+	Seien unter $P\vartheta$ $X_1,\ldots,X_n$ i.i.d. $\sim \mathcal{N}(\mu_X,\sigma^2)$ sowie $Y_1,\ldots,Y_m$ i.i.d. $\sim \mathcal{N}(\mu_Y,\sigma^2)$ wobei $m\neq n$ sein kann.
+	\begin{itemize}
+		\item \textit{Ungepaarter Zweistichproben-$z$-Test wenn $\sigma^2$ bekannt ist:} Es ist $T = \frac{(\overline{X_n} -\overline{Y_m}) - (\mu_X - \mu_Y)}{\sigma \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim \mathcal{N}(0,1)$
+		\item \textit{Ungepaarter Zweistichproben-$t$-Test wenn $\sigma^2$ unbekannt ist:} Wir haben die beiden empirischen Varianzen
+		$S^2_X = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X_n})^2$ und $S^2_Y = \frac{1}{n-1} \sum_{i=1}^{n} (Y_i - \overline{Y_n})^2$. Es gilt $S^2 = \frac{1}{m+n-2}\left(\left(n-1\right)S_X^2 + \left(m-1\right)S_Y^2\right)$ mit der Teststatistik $T = \frac{(\overline{X_n} -\overline{Y_m}) - (\mu_X - \mu_Y)}{S \sqrt{\frac{1}{n} + \frac{1}{m}}} \sim t_{n+m-2}$
+	\end{itemize}
+	
+\end{method}
 
 
 \section{Konfidenzbereiche}
@@ -1166,10 +1208,8 @@ Wir definieren die
 \end{itemize}
 
 
-\vfill
 
 
-\newpage
 
 
 
