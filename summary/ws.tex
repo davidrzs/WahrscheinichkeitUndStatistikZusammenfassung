@@ -302,7 +302,6 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 	
 \end{method}
 
-\newpage
 
 \section{Diskrete Zufallsvariablen und Verteilungen}
 
@@ -476,7 +475,6 @@ Mit Parameter $\lambda>0$ auf $\W(X) = \N_0$ schreiben wir $X\sim {\operatorname
 
 
 
-\newpage
 
 \section{Allgemeine Zufallsvariable}
 
@@ -636,6 +634,7 @@ F_X(t) &= \begin{cases}
 Die Exponentialverteilung ist Gedächtnislos: 
 $$P[X > t+s| X > s] = P[X > t]$$
 
+\textbf{Beispiel (Casinogewinn)} Wenn $Z\sim Exp(\lambda)$ dürfen wir $c$ wählen so dass wenn $Z > c$ gewinnen wir $c$. Berechne maximal erwartete Auszahlung: $G(c) = \E[c1_{\{Z > c\}}] = cP[Z > c] = ce^{-\lambda c}$. Nun maximiere $c$.
 
 \subsubsection*{Normalverteilung}
 Die Normalverteilung mit Parameter $\sigma^2$, der Varianz, $\mu$, dem Erwartungswert sowie $\W(X) = \R$. Man schreibt $X\sim \Nor(\mu,\sigma^2)$
@@ -648,6 +647,8 @@ Problem: Das Integral ist mühsam. Trick Wir plotten die Dichte $\varphi(t)$ sow
 
 Es gilt $\Phi(-x) = 1 - \Phi(x)$ sowie ${\Phi^{-1}(x) = -\Phi^{-1}(1-x)}$
 
+
+Zudem gilt für $X\sim N(\mu_X,\sigma^2_X)$, $Y \sim N(\mu_Y, \sigma^2_Y)$ mit $Z=X+Y$ dass $Z \sim N(\mu_X+\mu_Y, \sigma^2_X + \sigma^2_Y)$.
 
 
 \subsubsection*{Paretoverteilung}
@@ -796,7 +797,7 @@ Y = aX+b \quad &\implies \quad f_Y(x) = \tfrac{1}{|a|} f_X\left(\tfrac{x-b}{|a|}
 
 \begin{method}{Kovarianz}
 	\begin{align*}	
-	\operatorname{Cov}(X,Y) &= \E\left(\left(X-\E[X]\right)\left(Y-E(Y)\right)\right) \\
+	\operatorname{Cov}(X,Y) &= \E\left(\left(X-\E[X]\right)\left(Y-E(Y)\right)\right) \\ &= \E[XY]  - \E[X]\E[Y]\\
 	\operatorname{Cov}(X,X) &= \Var(X)
 	\end{align*}
 \end{method}
@@ -870,7 +871,6 @@ X_i \overset{iid}{\sim} \mc N(\mu, \sigma^2) \; \Rightarrow & \; S_n \sim \mc N(
 \end{align*}
 
 
-\newpage
 
 \section{Ungleichungen und Grenzwertsätze}
 
@@ -968,6 +968,11 @@ Nun gilt
 		M_X(t) &= \E\left[e^{tX}\right]
 	\end{align*}
 	welche auf $[0,\infty]$ wohldefiniert ist aber unendlich gross werden kann.
+	
+ Aufgrund der Definition gilt:\begin{itemize}
+ 	\item Diskret: $M_X(t) = \sum_{i=1}^{\infty} e^{tx_i}p_i$
+ 	\item Stetig: $M_X(t)= \int_{-\infty}^{\infty} e^{tx}f(x)\ dx$
+ \end{itemize}
 \end{method}
 
 \textbf{Beispiel}
@@ -1049,9 +1054,20 @@ Wenn die $X_1,\ldots X_n$ i.i.d. sind, dann verwenden wir oft die log-likelihood
 Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. eine Funktion wie $\vartheta = \frac{1}{n}\sum_{i=1}^{n}x_i$, wir ersetzten nun $x_i$ durch $X_i$ und $\vartheta$ durch $T$ zu $T = \frac{1}{n}\sum_{i=1}^{n}X_i$
 \end{method}
 
-\TODO{add example p130 ff.}
+\textbf{Beispiel}
 
+Seien $X_1,\ldots,X_n$ i.i.d und das Modell $P_{\theta}\sim Poisson(\theta)$. Wir bauen log-Likelihood Funktion:
 
+\begin{align*}
+	\log(L(x_1,\ldots,x_n)) &= \log\left(\prod_{i=1}^{n} e^{-\theta} \frac{\theta^{x_i}}{x_i !} \right)\\ &= -\theta n + \log(\theta) \sum_{i=1}^{n} x_i - \sum_{i=1}^{n}\log(x_i !)
+\end{align*}
+
+nun leiten wir ab:
+
+\begin{align*}
+	\frac{\partial}{\partial \theta}\log(L(x_1,\ldots,x_n)) &= -n + \frac{\sum_{i=1}^{n}x_i}{\theta} \stackrel{!}{=} 0 \\
+	\implies & \theta = \frac{\sum_{i=1}^{n} x_i}{n}
+\end{align*}
 
 \subsection*{Momentenschätzer}
 
@@ -1066,6 +1082,14 @@ Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. 
 	Dann setzen wir die Momente gleich und lösen nach $\vartheta$ auf.
 	
 \end{method}
+
+Es gilt bekanntlicherweise dass $\E[X] = \mu$ sowie $\E[X^2] = \mu^2 + \sigma^2$. Wir können somit das folgende System auflösen:
+
+\begin{align*}
+	\frac{x_1 + \ldots + x_n}{n} &= \mu\\
+	\frac{x_1^2 + \ldots + x_n^2}{n} &= \mu^2 + \sigma ^2
+\end{align*}
+
 
 
 \begin{thm}{Zentrale Lemmata}
@@ -1121,12 +1145,12 @@ Zuerst wählt man das Signifikanzniveau dann maximiert man die Macht des Testes.
 	Ein Test für den Erwartungswert bei bekannter Varianz. Seien $X_1,\ldots,X_n\sim \mathcal{N}(\mu,\sigma^2)$ unter $P_{\vartheta}$ mit bekanntem $\sigma^2$. Es ist $H_0 : \vartheta = \vartheta_0$ Möglich Variationen sind:
 	\begin{itemize}
 		\item $H_A: \vartheta > \vartheta_0$: $K = (c_>,\infty)$, $c_> = z_{(1-\alpha)}$
-		\item $H_A: \vartheta < \vartheta_0$: $K = (-\infty,c_<)$, $c_< = z_\alpha$.
-		\item $H_A: \vartheta > \vartheta_0$: $K = (-\infty,-c_{\neq}) \cup (c_{\neq},\infty)$, $c_{neq} = z_{1-\frac{\alpha}{2}}$.
+		\item $H_A: \vartheta < \vartheta_0$: $K = (-\infty,-c_<)$, $c_< = z_\alpha$.
+		\item $H_A: \vartheta \neq \vartheta_0$: $K = (-\infty,-c_{\neq}) \cup (c_{\neq},\infty)$, $c_{\neq} = z_{1-\frac{\alpha}{2}}$.
 	\end{itemize}
 Mit $T=\frac{\overline{X_n}-\vartheta_0}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1)$ sowie $z_{x} = \Phi^{-1}(x)$.
 \end{method}
-
+Beachte dass $\overline{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i$
 
 \begin{method}{$t$-Test}
 	Ein Test für den Erwartungswert bei unbekannter Varianz. Seien $X_1,\ldots,X_n\sim \mathcal{N}(\mu,\sigma^2)$ unter $P_{\vec{\vartheta}}$ mit $\vec{\vartheta}=(\mu,\sigma^2)$. Wir haben $\Theta_0= \{\sigma\}\times(0,\infty)$. Die Teststatistik ist gegeben durch $T = \frac{\overline{X_n}- \mu_0}{S/\sqrt{n}} \sim t_{n-1}$ mit $S^2=\frac{1}{n-1}\sum_{i=1}^{n}\left(X_i-\overline{X_n}\right)^2$ für $\sigma^2$
@@ -1134,7 +1158,7 @@ Mit $T=\frac{\overline{X_n}-\vartheta_0}{\sigma / \sqrt{n}} \sim \mathcal{N}(0,1
 	\begin{itemize}
 		\item $H_A: \vartheta > \vartheta_0$: $K = (c_>,\infty)$, $c_> = t_{n-1,1-\alpha}$
 		\item $H_A: \vartheta < \vartheta_0$: $K = (-\infty,c_<)$, $c_< = t_{n-1,\alpha} = -t_{n-1,1-\alpha}$.
-		\item $H_A: \vartheta > \vartheta_0$: $K = (-\infty,-c_{\neq}) \cup (c_{\neq},\infty)$, $c_{neq} = t_{n-1,1-\frac{\alpha}{2}}$.
+		\item $H_A: \vartheta > \vartheta_0$: $K = (-\infty,-c_{\neq}) \cup (c_{\neq},\infty)$, $c_{\neq} = t_{n-1,1-\frac{\alpha}{2}}$.
 	\end{itemize}
 	wobei $t_{m,\gamma}$ das $\gamma$-Quantil der $t_m$ Verteilung ist.
 \end{method}
