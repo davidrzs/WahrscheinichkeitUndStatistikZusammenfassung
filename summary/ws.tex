@@ -380,9 +380,6 @@ p_X(x) &= P[X=x] = \sum_{y_i\in \W(Y)} p(x,y_i)
 	\end{align*}
 \end{method}
 
-\textbf{Beispiel (Bayesian Interference)}
-...
-\TODO{}
 
 
 \section{Wichige diskrete Verteilungen}
@@ -562,20 +559,31 @@ Umgekehrt kann man aus einer messbaren Funktion $f:\R\to[0,\infty)$ mit $\int_{-
 
 
 \subsection*{Transformation von stetigen Zufallsvariablen}
+\begin{itemize}
+	\item Angenommen wir haben die Dichte $f(x,y)$ gegeben und wir suchen die Verteilfunktion und Dichte von $Z = X + Y$. Wir haben $F_Z(z) = P[Z \leq z] = P[X+Y\leq z]$. Nun definieren wir $A_z = \{(x,y)\in\R^2|x+y\leq z\}$. Es gilt nun:
+	
+	\begin{align*}
+	F_Z(z) = P[(X,Y)\in A_z] &= \int_{A_z} \int f(x,y) dy dx\\
+	&= \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f(x,y) dy dx
+	\end{align*}
+	
+	Sowie $f_Z(z) = \frac{d}{dz} F_Z(z)$.
+	
+	
+\item Sei $U = \frac{X}{X+Y}$ mit $X,Y\sim Exp(\lambda)$; finde $f_U, F_U$:
 
-Angenommen wir haben die Dichte $f(x,y)$ gegeben und wir suchen die Verteilfunktion und Dichte von $Z = X + Y$. Wir haben $F_Z(z) = P[Z \leq z] = P[X+Y\leq z]$. Nun definieren wir $A_z = \{(x,y)\in\R^2|x+y\leq z\}$. Es gilt nun:
+Es gilt $F_U(u) = P[U \leq u] = P[\frac{X}{X+Y}\leq u]$ woraus $x(u^{-1} -1)\leq y$ folgt.
+Somit ist das Integral $F_U = \lambda^2 \int_{0}^{\infty} e^{-\lambda x} \int_{x(u^{-1} -1)}^{\infty} e^{-\lambda y} dy dx = u$.
 
-\begin{align*}
-F_Z(z) = P[(X,Y)\in A_z] &= \int_{A_z} \int f(x,y) dy dx\\
-&= \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f(x,y) dy dx
-\end{align*}
+Da nun $0 \leq U = \frac{X}{X+Y} \leq 1$ folgt $f_U(u) = 1_{u\in[0,1]}$
 
-Sowie $f_Z(z) = \frac{d}{dz} F_Z(z)$.
+\item Sei nun zusätzlich noch $V=X+Y$ und wir möchten $f_{U,V}$ berechnen, so gilt
+
+$$f_{U,V} = \lambda^2 \int_{0}^{\infty} e^{-\lambda x} \left(\int_{0}^{\infty} 1_{\{\frac{x}{x+y}\leq u, x+y \leq v\}} e^{-\lambda y}dy \right) dx$$
+
+\end{itemize}
 
 
-
-
-\TODO{serie 5 aufgabe 2 - transformation}
 
 
 
@@ -640,7 +648,7 @@ Problem: Das Integral ist mühsam. Trick Wir plotten die Dichte $\varphi(t)$ sow
 
 Es gilt $\Phi(-x) = 1 - \Phi(x)$ sowie ${\Phi^{-1}(x) = -\Phi^{-1}(1-x)}$
 
-\TODO{Beispiel mir transformation}
+
 
 \subsubsection*{Paretoverteilung}
 Die Paretoverteilte Variable $X\sim\operatorname{Par}(x_0,\alpha)$ mit 
@@ -671,7 +679,7 @@ x_0 \frac{\alpha}{\alpha - 1}\ \text{ für } \alpha > 1 \\
 
 Diese Verteilung modelliert zum Beispiel die Krankenkosten eines Versicherten pro Jahr.
 
-\newpage 
+
 \section{Kennzahlen von Zufallsvariablen}
 
 
@@ -962,6 +970,8 @@ Nun gilt
 	welche auf $[0,\infty]$ wohldefiniert ist aber unendlich gross werden kann.
 \end{method}
 
+\textbf{Beispiel}
+Sei $X \sim Exp(\lambda)$. Dann gilt $M_X(t) = \E[e^{tX}] = \int_{0}^{\infty} e^{tx} \lambda e^{-\lambda x} dx = \lambda \int_{0}^{\infty}e^{-(\lambda-t)x} dx = - \frac{\lambda}{\lambda - t} e^{-(\lambda -t)x}\mid_0^\infty$
 \begin{method}{Abschätzung mit momenterzeugender Funktion}
 Seien $X_1,\ldots,X_n$ i.i.d. Zufallsvariablen für welche die momenterzeugende Funktion $M_X(t)$ für alle $t\in \R$ endlich ist. Für jedes $b$ gilt dann:
 \begin{align*}
@@ -1103,16 +1113,6 @@ Zuerst wählt man das Signifikanzniveau dann maximiert man die Macht des Testes.
 	\end{align*}der Likelihood Koeffizient, mit Signifikanzniveau $\alpha \leq \alpha'$ hat kleinere Macht.
 \end{thm}
 
-Bei zusammengesetzten Hypothesen und Alternativen (also Intervallen) nutz man auch den verallgemeinerten Likelihood-Koeffizienten
-
-
-\begin{align*}
-R(x_1,\ldots,x_n) = \frac{\sup_{\vartheta\in \Theta_0}L(x_1,\ldots,x_n;\vartheta_0)}{\sup_{\vartheta\in \Theta_A}L(x_1,\ldots,x_n;\vartheta_A)}\\
-\tilde{R}(x_1,\ldots,x_n) = \frac{\sup_{\vartheta\in \Theta_0}L(x_1,\ldots,x_n;\vartheta_0)}{\sup_{\vartheta\in \Theta_A\cup \Theta_0}L(x_1,\ldots,x_n;\vartheta_A)}\\
-\end{align*}
-
-\TODO{add example}
-
 
 \subsection*{Statistische Testverfahren}
 
@@ -1243,50 +1243,6 @@ Wir definieren die
 \end{method}
 
 
-\begin{method}{Weierstrass (Äquivalente Definitionen)}
-Sei $f : D \to \R$, $x_0$ ein Häufungspunkt von $D$, dann sind folgende Aussagen äquivalent:
-\begin{enumerate}
-	\item $f$ ist in $x_0$ differenzierbar.
-	\item Es gibt ein $c\in \R$ und $r : D \cup \{x_0\} \to \R$ mit:
-	\begin{enumerate}
-		\item $f(x) = f(x_0) + c(x-x_0) + r(x) (x-x_0)$
-		\item $r(x_0) = 0$ mit $r$ stetig in $x_0$
-	\end{enumerate}
-Falls dies zutrifft ist $c=f'(x_0)$ eindeutig bestimmt.
-\end{enumerate}
-\end{method}
-
-\textbf{(Beispiel) Per Definition Ableiten}
-
-\begin{itemize}
-	\item $f(x) = x^2$:
-	\begin{align*}
-		\frac{f(x) - f(x_0)}{x-x_0} &= 	\frac{x^2 - x_{0}^2}{x-x_0} = \frac{(x-x_0) (x+x_0)}{x-x_0} = x + x_0\\
-		\lim_{x \to x_0} \frac{f(x)-f(x_0)}{x-x_0} &= \lim_{(x\to x_0)} x + x_0 = 2x_0
-	\end{align*}
-\end{itemize}
-
-
-
-\begin{method}{Satz von Rolle}
-	Sei $f: [a,b] \to \R$ stetig auf $(a,b)$ differenzierbar. Falls $f(a) = f(b)$, dann gibt es $\xi \in [a,b]$ mit $f'(\xi) = 0$
-\end{method}
-\textbf{Beweis (Satz von Rolle)} Aus dem Min-Max Satz folgt $\exists u,v \in [a,b]$ mit $f(u) \leq f(x) \leq f(v) \ \forall x \in [a,b]$. Falls einer der beiden in $(a,b)$ liegt nennen wir es $\xi$. Sonst gilt $f(a) = f(b)$ und dann $\xi = a$.
-
-
-\begin{method}{Satz von Lagrange / Mittelwertsatz}
-	Sei $f:[a,b] \to \R$ stetig mit $(a,b)$ differenzierbar. Dann gibt es $\xi \in (a,b)$ mit $$f(b) - f(a) = f'(\xi) (b-a)$$
-	Dieser Satz ist auch bekannt als Mittelwertsatz. Die Aussage ist äquivalent zu: 
-	\begin{align*}
-		\exists x \in (a,b) : \quad f'(x) = \frac{f(b) -f(a) }{b-a}
-	\end{align*}
-\end{method}
-\textbf{Beispiele (Lagrange)}
-\begin{itemize}
-	\item \textit{Zeige $|\sin(a) - \sin(b)| \leq |b-a|$:} Es folgt direkt dass $\exists c$: $\frac{\sin(b)- \sin(a)}{b-a} = \cos(c)$. Es folgt: $\cos(c) (b-a) = \sin(b) - \sin(a)$. Da aber $\cos(c) \leq 1$ folgt:
-	$|b-a| \geq |\sin(b) - \sin(a)|$.
-	\item \textit{Beweise: falls $f'(x) = 0 \ \forall x$, dann ist $f(x)$ auf $[a,b]$ konstant:} Aus Lagrange folgt dass für $x_1,x_2\in (a,b)$ beliebig: $0 = \frac{f(x_2)-f(x_1)}{x_2-x_1}$ dies impliziert $f(x_1) = f(x_2)$ $\forall x_1,x_2 \in (a,b)$.
-\end{itemize}
 
 \subsection*{Konvexität}
 
@@ -1370,11 +1326,6 @@ Falls dies zutrifft ist $c=f'(x_0)$ eindeutig bestimmt.
 
 
 \subsection*{Fundamentalsatz}
-\begin{method}{Stammfunktion}
-Die Funktion $F(x) = \int_{a}^{x} f(t) dt$ ist in $[a,b]$ stetig und differenzierbar mit $F' = f$ wenn $a<b$ und $f:[a,b]\to R$ stetig ist. \\
-\textit{Beweis:} Aus additivität folgt: $\int_{a}^{x_0} f(t) dt$ + $\int_{x_0}^{x} f(t) dt = \int_{a}^{x} f(t) dt$. Also $F(x) - F(x_0) = \int_{x_0}^{x} f(t) dt$. Per Mittelwertsatz sehen wir nun, dass es ein $\xi \in [x,x_0]$ gibt mit $\int_{x_0}^{x} f(t) dt = f(\xi) (x-x_0) $. Für $x \not = x_0$ folgt somit $\frac{F(x) - F(x_0)}{x-x_0} = f(\xi)$. Wegen der Stetigkeit von $f$ folgt: $\lim_{(x\to x_0)} \frac{F(x) - F(x_0)}{x-x_0} = f(x_0)$. \qed
-\end{method}
-
 
 \begin{method}{Fundamentalsatz der Differentialrechnung}
 Sei $f:[a,b] \to \R$ stetig. Dann gibt es eine Stammfunktion $F$ von $f$, die bis auf eine additive Konstante eindeutig bestimmt ist und es gilt:
