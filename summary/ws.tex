@@ -380,6 +380,11 @@ p_X(x) &= P[X=x] = \sum_{y_i\in \W(Y)} p(x,y_i)
 \end{method}
 
 
+\begin{method}{Bedingte Erwartung}
+	
+\end{method}
+
+
 
 \section{Wichige diskrete Verteilungen}
 
@@ -931,9 +936,9 @@ Wir bezeichnen in der folgenden Diskussion $X_i, \ldots, X_n$ Zufallsvariablen. 
 	\end{align*}
 \end{method}
 
-\textbf{Unterschied zwischen starkem und schwachem Gesetz der grossen Zahlen:} Beim ersten Gesetz ist die Wahrscheinlichkeit, dass $|\overline{X}_n - \mu|> \epsilon$ nie 0 sondern nur asymptotisch mit $n \to \infty$ 0. Somit gibt es eine sehr kleine Wahrscheinlichkeit, dass $|\overline{X}_n - \mu| > \epsilon$. Beim starken Gesetz ist jedoch die Wahrscheinlichkeit, dass dies passiert 0. In anderen Worten wenn wir unendlich viele $\overline{X_n}$ anschauen werden nur endlcih viele nicht nach $\mu$ konvergieren.
+\textbf{Unterschied zwischen starkem und schwachem Gesetz der grossen Zahlen:} Beim ersten Gesetz ist die Wahrscheinlichkeit, dass $|\overline{X}_n - \mu|> \epsilon$ nie 0 sondern nur asymptotisch mit $n \to \infty$ 0. Somit gibt es eine sehr kleine Wahrscheinlichkeit, dass $|\overline{X}_n - \mu| > \epsilon$. Beim starken Gesetz ist jedoch die Wahrscheinlichkeit, dass dies passiert 0. In anderen Worten wenn wir unendlich viele $\overline{X_n}$ anschauen werden nur endlich viele nicht nach $\mu$ konvergieren.
 
-Zusammengefasst: Beim schwachen ist die Chance von nichtkonvergenz sehr klein, beim zweiten 0.
+Zusammengefasst: Beim schwachen ist die Chance von Nichtkonvergenz sehr klein, beim zweiten 0.
 
 \subsection*{Der zentrale Grenzwertsatz}
 
@@ -967,7 +972,7 @@ Nun gilt
 	\begin{align*}
 		M_X(t) &= \E\left[e^{tX}\right]
 	\end{align*}
-	welche auf $[0,\infty]$ wohldefiniert ist aber unendlich gross werden kann.
+	welche auf $[0,\infty)$ wohldefiniert ist aber unendlich gross werden kann.
 	
  Aufgrund der Definition gilt:\begin{itemize}
  	\item Diskret: $M_X(t) = \sum_{i=1}^{\infty} e^{tx_i}p_i$
@@ -992,6 +997,13 @@ Seien $X_1,\ldots,X_n$ i.i.d. Zufallsvariablen für welche die momenterzeugende 
 	\end{align*}
 \end{method}
 
+Alternativ gibt es auch folgende Abschätzungen: (nicht im Skript!)
+
+\begin{align*}
+	P[X \geq (1+\delta)\mu] &\leq e^{-\frac{\delta^2}{2+\delta}\mu} \ \text{ für alle } \delta > 0  \\
+	P[X \leq (1-\delta)\mu] &\leq e^{-\mu\delta^2/2} \ \text{ für } 0 < \delta < 1
+\end{align*}
+
 
 \part{Statistik}
 
@@ -1015,7 +1027,7 @@ Seien $X_1,\ldots,X_n$ i.i.d. Zufallsvariablen für welche die momenterzeugende 
 \end{method}
 
 \begin{method}{Konsistenz}
-	Wir nennen eine Folge von Schätzern $T^(n)$ konsistent für $\vartheta$ falls
+	Wir nennen eine Folge von Schätzern $T^{(n)}$ konsistent für $\vartheta$ falls
 	\begin{align*}
 \lim_{n\to\infty} P_\vartheta [|T^{(n)} - \vartheta| > \epsilon] = 0 \quad \forall \epsilon > 0
 	\end{align*}
@@ -1460,55 +1472,6 @@ Mithilfe quadratischer Ergänzung auf einen der folgenden Fälle zurückführen,
 \end{align*}
 
 
-% -------------------------- Partialbruchzerlegung ------------------------------
-
-
-
-
-\vfill\null
-\columnbreak
-
-% to have more vertical space in the table.
-
-{\renewcommand{\arraystretch}{1.5}
-	\begin{table}[]
-		\begin{tabular}{@{} p{.25\textwidth} p{.3\textwidth} p{.45\textwidth} @{}}
-			\toprule
-			Funktion & Ableitung & Bemerkung / Regel\\ \midrule
-			$x$ & $1$ &   \\
-			$x^2$& $2x$ &   \\
-			$x^n$& $n\cdot x^{n-1}$ & $n \in \R$  \\
-			$\frac{1}{x} = x^{-1}$ & $- \frac{1}{x^2}$ & \\
-			$\sqrt{x} = x^{\frac{1}{2}}$ & $\frac{1}{2\sqrt{x}}$ & \\ 
-			$\sqrt[n]{x} = x^{\frac{1}{n}}$ & $\frac{x^{\frac{1}{n} -1 }}{n}$ &  $\int x^{1/n} dx = \frac{n x^{1/n + 1}}{n+1} + C$\\ 
-			$e^x$ & $e^x$ & \\
-			$a^x$ & $\ln(a) \cdot a^x$& \\
-			$x^x = e^{x\log(x)}$ & $x^x \cdot (\log(x) + 1)$ & Kettenregel $e^{x\log(x)}$\\
-			$\ln(x)$ & $\frac{1}{x}$ & \\
-			$x\ln(x) - x$ & $\ln(x)$ &  \\ \midrule
-			$\sin(x)$ & $\cos(x)$ & \\
-			$\cos(x)$ & $- \sin(x)$ & \\ 
-			$\tan(x) = \frac{\sin(x)}{\cos(x)}$ & $\frac{1}{\cos^2(x)} = 1 + \tan^2(x)$ &\\
-			$\cot(x) = \frac{\cos(x)}{\sin(x)}$ & - $\frac{1}{\sin^2(x)}$ & \\ 
-			$\arcsin(x)$ & $\frac{1}{\sqrt{1 - x^2}}$ & $ \arcsin : [-1,1] \to [-\frac{\pi}{2},\frac{\pi}{2}]$\\
-			$\arccos(x)$ & $ - \frac{1}{\sqrt{1-x^2}}$ & $\arccos : [-1,1] \to [0, \pi]$\\
-			$\arctan(x)$ & $\frac{1}{1+x^2}$ & $\arctan:(-\infty, \infty) \to (- \frac{\pi}{2},\frac{\pi}{2})$\\
-			$\operatorname{arccot}(x)$ & $ - \frac{1}{1+x^2} $ & $\operatorname{arccot} : (-\infty, \infty) \to (0,\pi)$\\
-			\midrule
-			$\cosh(x)$ & $\sinh(x)$ &\\
-			$\sinh(x)$ & $\cosh(x)$ & \\
-			$\tanh(x)$ & $\frac{1}{\cosh^2(x)}$ & \\
-			$\operatorname{arsinh}(x)$ & $\frac{1}{\sqrt{1+x^2}}$ & $\forall x \in R$\\
-			$\operatorname{arcosh}(x)$ & $\frac{1}{\sqrt{x^2 - 1}}$ & $\forall x \in (1, \infty)$\\		  $\operatorname{artanh}(x)$ & $\frac{1}{1-x^2}$ & $\forall x \in (-1,1)$\\
-			\midrule
-			$g(x) \cdot h(x)$ & $g(x) \cdot h'(x) + g'(x) \cdot h(x)$ & Produktregel\\
-			$\left(g(x)\right)^n$ & $n \cdot \left( g(x) \right)^{n-1} \cdot g'(x)$ & Potenzregel\\
-			$\frac{g(x)}{h(x)}$ & $\frac{ g'(x) \cdot h(x) - g(x)\cdot h'(x)}{\left(h(x)\right) ^2}$ & Quotientenregel\\
-			$h(g(x))$ & $h'(g(x)) \cdot g'(x)$ & Kettenregel\\
-			\bottomrule
-		\end{tabular}
-	\end{table}
-}
 
 
 
@@ -1525,6 +1488,13 @@ Mithilfe quadratischer Ergänzung auf einen der folgenden Fälle zurückführen,
 \begin{method}{Binomialsatz}
 	$\forall x,y \in \mathbb{C}$, $n \geq 1$ gilt:
 	$$(x+y)^n = \sum_{k=0}^{n} \binom{n}{k}x^k y^{n-k}$$
+\end{method}
+
+
+\begin{method}{Binomialkoeffizienten}
+	\begin{align*}
+		\binom{n}{k} &= \frac{n!}{(n-k)!k!}
+	\end{align*}
 \end{method}
 
 \begin{method}{ABC / Mitternachtsformel}
@@ -1590,7 +1560,7 @@ Mithilfe quadratischer Ergänzung auf einen der folgenden Fälle zurückführen,
 	\end{align*}
 \end{method}
 
-
+\newpage
 
 \subsection*{Wichtige Integrale}
 
@@ -1690,7 +1660,64 @@ Mithilfe quadratischer Ergänzung auf einen der folgenden Fälle zurückführen,
 	\end{pmatrix} \cdot f
 \end{align*}
 
-\newpage
+
+\begin{thm}{Integral der Normalverteilung}
+	\begin{align*}
+		\int_{-\infty}^{\infty} e^{-a(x+b)^2} \ dx = \sqrt{\frac{\pi}{a}}
+	\end{align*}
+\end{thm}
+
+
+
+
+\vfill\null
+\columnbreak
+
+% to have more vertical space in the table.
+
+{\renewcommand{\arraystretch}{1.5}
+	\begin{table}[]
+		\begin{tabular}{@{} p{.25\textwidth} p{.3\textwidth} p{.45\textwidth} @{}}
+			\toprule
+			Funktion & Ableitung & Bemerkung / Regel\\ \midrule
+			$x$ & $1$ &   \\
+			$x^2$& $2x$ &   \\
+			$x^n$& $n\cdot x^{n-1}$ & $n \in \R$  \\
+			$\frac{1}{x} = x^{-1}$ & $- \frac{1}{x^2}$ & \\
+			$\sqrt{x} = x^{\frac{1}{2}}$ & $\frac{1}{2\sqrt{x}}$ & \\ 
+			$\sqrt[n]{x} = x^{\frac{1}{n}}$ & $\frac{x^{\frac{1}{n} -1 }}{n}$ &  $\int x^{1/n} dx = \frac{n x^{1/n + 1}}{n+1} + C$\\ 
+			$e^x$ & $e^x$ & \\
+			$a^x$ & $\ln(a) \cdot a^x$& \\
+			$x^x = e^{x\log(x)}$ & $x^x \cdot (\log(x) + 1)$ & Kettenregel $e^{x\log(x)}$\\
+			$\ln(x)$ & $\frac{1}{x}$ & \\
+			$x\ln(x) - x$ & $\ln(x)$ &  \\ \midrule
+			$\sin(x)$ & $\cos(x)$ & \\
+			$\cos(x)$ & $- \sin(x)$ & \\ 
+			$\tan(x) = \frac{\sin(x)}{\cos(x)}$ & $\frac{1}{\cos^2(x)} = 1 + \tan^2(x)$ &\\
+			$\cot(x) = \frac{\cos(x)}{\sin(x)}$ & - $\frac{1}{\sin^2(x)}$ & \\ 
+			$\arcsin(x)$ & $\frac{1}{\sqrt{1 - x^2}}$ & $ \arcsin : [-1,1] \to [-\frac{\pi}{2},\frac{\pi}{2}]$\\
+			$\arccos(x)$ & $ - \frac{1}{\sqrt{1-x^2}}$ & $\arccos : [-1,1] \to [0, \pi]$\\
+			$\arctan(x)$ & $\frac{1}{1+x^2}$ & $\arctan:(-\infty, \infty) \to (- \frac{\pi}{2},\frac{\pi}{2})$\\
+			$\operatorname{arccot}(x)$ & $ - \frac{1}{1+x^2} $ & $\operatorname{arccot} : (-\infty, \infty) \to (0,\pi)$\\
+			\midrule
+			$\cosh(x)$ & $\sinh(x)$ &\\
+			$\sinh(x)$ & $\cosh(x)$ & \\
+			$\tanh(x)$ & $\frac{1}{\cosh^2(x)}$ & \\
+			$\operatorname{arsinh}(x)$ & $\frac{1}{\sqrt{1+x^2}}$ & $\forall x \in R$\\
+			$\operatorname{arcosh}(x)$ & $\frac{1}{\sqrt{x^2 - 1}}$ & $\forall x \in (1, \infty)$\\		  $\operatorname{artanh}(x)$ & $\frac{1}{1-x^2}$ & $\forall x \in (-1,1)$\\
+			\midrule
+			$g(x) \cdot h(x)$ & $g(x) \cdot h'(x) + g'(x) \cdot h(x)$ & Produktregel\\
+			$\left(g(x)\right)^n$ & $n \cdot \left( g(x) \right)^{n-1} \cdot g'(x)$ & Potenzregel\\
+			$\frac{g(x)}{h(x)}$ & $\frac{ g'(x) \cdot h(x) - g(x)\cdot h'(x)}{\left(h(x)\right) ^2}$ & Quotientenregel\\
+			$h(g(x))$ & $h'(g(x)) \cdot g'(x)$ & Kettenregel\\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+}
+
+
+
+
 
 \end{multicols}
 \end{document}
