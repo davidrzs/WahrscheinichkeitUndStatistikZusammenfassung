@@ -1201,7 +1201,31 @@ Ein Konfidenzbereich ist eine Menge $C(X_1,\ldots,X_n) \subseteq \Omega$ zum Niv
 \end{align*}
 \end{method}
 
-\textbf{Beispiel}
+
+\begin{thm}{Bekannte Konfidenzbereiche}
+\begin{itemize}
+	\item 	$\mu$ unbekannt, $\sigma^2$ bekannt:
+	\begin{itemize}
+		\item $\mu \text{ zum Niveau } 1-\alpha$:
+		\begin{align*}
+			{\displaystyle \left[{{\overline{X_n}}-z_{(1-{\tfrac {\alpha }{2}})}{\frac {\sigma }{\sqrt {n}}}\ ;\ {\overline{X_n}}+z_{(1-{\tfrac {\alpha }{2}})}{\frac {\sigma }{\sqrt {n}}}}\right]}
+		\end{align*}
+	\end{itemize}
+	\item 	$\mu, \sigma^2$ unbekannt:
+	\begin{itemize}
+\item $\mu \text{ zum Niveau } 1-\alpha$:
+	\begin{align*}
+  \left[ \overline{X_n} -t_{n-1,1-\frac{\alpha}{2}}\frac{S}{\sqrt{n}} , \overline{X_n} +t_{n-1,1-\frac{\alpha}{2}}\frac{S}{\sqrt{n}}   \right]
+	\end{align*}
+	\item $\sigma^2 \text{ zum Niveau } 1-\alpha$:
+	\begin{align*}
+\left[ \frac{(n-1)S^2}{\chi_{n-1,1-\frac{\alpha}{2}}^2} , \frac{(n-1)S^2}{\chi_{n-1,\frac{\alpha}{2}}^2}\right]
+	\end{align*}
+	\end{itemize}
+\end{itemize}
+\end{thm}
+
+\textbf{Konstruktion von Konfidenzintervallen}
 
 Angenommen wir haben 8 Gewichte gegeben die wir als Realisationen von $X_1,\ldots,X_8$ i.i.d. $\sim \mathcal{N}(\mu,\sigma^2)$. Als Schätzer verwenden wir $\mu = \overline{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i$ und als Stichprobenvarianz $S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X_n})^2$.
 
