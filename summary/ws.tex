@@ -381,7 +381,11 @@ p_X(x) &= P[X=x] = \sum_{y_i\in \W(Y)} p(x,y_i)
 
 
 \begin{method}{Bedingte Erwartung}
-	
+	Die Erwartung von $Y$ gegeben, dass $X=x$ bereits eingetroffen ist, ist definiert durch:
+	\begin{align*}
+	\E[Y|X=x] &= \sum _{y}yP(Y=y\mid X=x)=\sum _{y}y{\frac {P(X=x,Y=y)}{P(X=x)}}\\
+	\E[Y|X=x] &= \int y\cdot  f_{Y|X=x}(y)\  dy = \int y\cdot  \frac{f_{X,Y}(x,y)}{f_{X=x}(y)} \ dy
+	\end{align*}
 \end{method}
 
 
