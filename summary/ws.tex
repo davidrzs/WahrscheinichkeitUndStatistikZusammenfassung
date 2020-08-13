@@ -1070,7 +1070,7 @@ Wenn die $X_1,\ldots X_n$ i.i.d. sind, dann verwenden wir oft die log-likelihood
 Nun maximiere die Funktion (meistens reicht die Nullstelle): Die gibt dann z.B. eine Funktion wie $\vartheta = \frac{1}{n}\sum_{i=1}^{n}x_i$, wir ersetzten nun $x_i$ durch $X_i$ und $\vartheta$ durch $T$ zu $T = \frac{1}{n}\sum_{i=1}^{n}X_i$
 \end{method}
 
-\textbf{Beispiel}
+\textbf{Beispiel 1:}
 
 Seien $X_1,\ldots,X_n$ i.i.d und das Modell $P_{\theta}\sim Poisson(\theta)$. Wir bauen log-Likelihood Funktion:
 
@@ -1084,6 +1084,24 @@ nun leiten wir ab:
 	\frac{\partial}{\partial \theta}\log(L(x_1,\ldots,x_n)) &= -n + \frac{\sum_{i=1}^{n}x_i}{\theta} \stackrel{!}{=} 0 \\
 	\implies & \theta = \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align*}
+
+\textbf{Beispiel 2 (nicht Ableitbar):}
+
+Sei $f_X(x) = \begin{cases}
+e^{\alpha - x} \quad x \geq \alpha\\
+0 \quad \text{sonst}
+\end{cases}$ Wir möchten den MLS berechnen:
+
+\begin{align*}
+	L(\vec{x},\theta) &= \prod_{i=1}^{n} f_\alpha (x_i) = \prod_{i=1}^{n} e^{\alpha - x_i} 1_{x_i \geq \alpha}\\
+	&= \exp \left(n\alpha - \sum_{i=1}^{n} x_i \right) \cdot \prod_{i=1}^{n} 1_{x_i\geq \alpha}\\
+	&= \exp \left(n\alpha - \sum_{i=1}^{n} x_i \right) \cdot 1_{\min x_i \geq \alpha}\\
+	&= \begin{cases}
+	\exp (n \alpha - \sum_{i=1}^{n} x_i) \quad \alpha \leq \min x_i\\
+	0 \quad \text{sonst}
+	\end{cases}
+\end{align*}
+Somit ist der MLS $\hat{\alpha} = \min x_i$, da dann $\alpha$ den obigen Ausdruck maximiert.
 
 \subsection*{Momentenschätzer}
 
