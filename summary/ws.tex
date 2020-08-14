@@ -556,6 +556,21 @@ Umgekehrt kann man aus einer messbaren Funktion $f:\R\to[0,\infty)$ mit $\int_{-
 	
 \end{method}
 
+\textbf{Beispiel zusammengesetzter Zufallsvariablen}
+
+\begin{itemize}
+	\item $X = \min\{X_1,\ldots,X_n\}$, finde $f_X$
+	
+	Wir wissen $F_X(t) = P[X\leq t] = \prod_{i=1}^n P[X_k \leq t] = F(t)^n$. Da $f_X(t) = \frac{dF_X(t)}{dt}$ folgt $f_X(t) = n\cdot F(t)^{n-1} f(t)$.
+	
+	\item $X = \max\{X_1,\ldots,X_n\}$, finde $f_X$
+	
+	Wir wissen $F_X(t) = 1 - P[X>t] = 1 - P [X_1 > t, \ldots X_n > t] = 1 - (1 - F(t))^n$. Da $f_X(t) = \frac{dF_X(t)}{dt}$ folgt $f_X(t) = n(1-F(t))^{n-1}f(t)$.
+\end{itemize}
+
+
+
+
 \begin{method}{Unabhängigkeit von Zufallsvariablen} Die Zufallsvariablen $X_1,\ldots, X_n$ heissen unabhängig, falls gilt
 	
 	\begin{align*}
@@ -967,6 +982,19 @@ Nun gilt
 	S_n &\stackrel{\text{approx}}{\sim} \mathcal{N}(n\mu, n\sigma^2)\\
 	\overline{X_n} &\stackrel{\text{approx}}{\sim} \mathcal{N}(\mu, \frac{1}{n}\sigma^2)
 \end{align*}
+
+
+\begin{thm}{Kontinuitätskorrektur}
+	
+	
+	Angenommen $S_n \stackrel{\text{approx.}}{\sim} \mathcal{N}(np,np(1-p))$ sowie
+	\begin{align*}
+		P\left[ a < S_n  \leq b \right] &= P\left[ \frac{a-np}{ \sqrt{np(1-p)}} < S_n^* \leq \frac{b-np}{\sqrt{np(1-p)}} \right]\\
+		&\approx \Phi \left(\frac{b+\frac{1}{2} - np}{\sqrt{np(1-p)}}\right) - \Phi \left(\frac{a+\frac{1}{2} - np}{\sqrt{np(1-p)}}\right)
+	\end{align*}
+	wobei $S^*_n \sim \mathcal{N}(0,1)$, so haben wir die Untere Schranke um $\frac{1}{2}$ nach oben verschoben, da $a$ nicht drin ist, und $b$ auch, da $b$ drin ist. Intuitiv wollen wir damit die Stäbe aus dem Histogramm der Binomialverteilung zentriert über die Werte von $a$ bis $b$ setzten.
+\end{thm}
+
 
 \subsection*{Grosse Abweichungen und Chernoff-Schranken}
 
