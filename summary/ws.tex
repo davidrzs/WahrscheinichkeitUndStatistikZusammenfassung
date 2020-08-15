@@ -769,7 +769,6 @@ Für unkorrelierte Zufallsvariablen $X_i$ gilt
 \end{itemize}
 \end{method}
 
-\TODO{serie 9: transformation in varianz}
 
 \textbf{Beispiel (nicht konvergenter Erwartungswert):}
 Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
@@ -1113,7 +1112,7 @@ nun leiten wir ab:
 	\implies & \theta = \frac{\sum_{i=1}^{n} x_i}{n}
 \end{align*}
 
-\textbf{Beispiel 2 (nicht Ableitbar):}
+\textbf{Beispiel 2 (nicht ableitbar):}
 
 Sei $f_X(x) = \begin{cases}
 e^{\alpha - x} \quad x \geq \alpha\\
@@ -1181,14 +1180,38 @@ Für einen Test definieren wir:
 Wir bauen eine Teststatistik $T$. Wir verwerfen die Hypothese wenn $T(\omega) \in K$ liegt, wobei $K$ ein Intervall, der Verwerfungsbereich ist.
 
 \begin{itemize}
-	\item Signifikanzniveau $\alpha \in (0,1)$ wird gewählt mit $\sup_{\vartheta\in \Theta_0} P_{\vartheta} \left[T\in K\right] \leq \alpha$
-	\item Die Macht des Testes ist $\beta : \Theta_A \to [0,1]$ mit $\beta(\vartheta) = P_{\vartheta}[T\in K]$.
+	\item Signifikanzniveau $\alpha \in (0,1)$ wird gewählt mit $\sup_{\vartheta\in \Theta_0} P_{\vartheta} \left[T\in K\right] \leq \alpha$. Es gilt $\alpha = P[\text{Typ 1 Fehler} | H_0\text{ ist wahr}]$
+	\item Die Macht des Testes ist $\beta : \Theta_A \to [0,1]$ mit $\beta(\vartheta) = P_{\vartheta}[T\in K]$ mit $P[\text{Typ 2 Fehler}] = \beta$
 \end{itemize}
+
+mit 
+
+\begin{itemize}
+	\item \textbf{Typ 1 Fehler:} verwerfe $H_0$ obwohl sie stimmte
+	\item \textbf{Typ 2 Fehler:} bestätige $H_0$ obwohl sie eigentlich falsch ist
+\end{itemize}
+
+Dabei gilt:
 
 Zuerst wählt man das Signifikanzniveau dann maximiert man die Macht des Testes.
 
-\TODO{add example}
 
+\textbf{Macht Berechnen: Beispiel}
+
+Angenommen wir haben einen Test $T = \frac{\overline{X} - \mu_0}{\sigma / \sqrt{9}}$ sowie ein Verwerfungsbereich $K=[1.28,\infty)$ (einseitiger Test) mit $H_0 : \mu = 84$.
+
+Nun wollen wir die Macht des Testes zugunsten der konkreten Alternativhypothese $H_A: \mu = 85$ testen.
+
+Nun rechnen wir
+
+\begin{align*}
+	P_{\mu = 85}[T\in K] &= P_{\mu = 85}[T\geq 1.28]\\
+	&= P_{\mu = 85} \left[\frac{\overline{X} -85}{\sigma / \sqrt{9}} - \frac{\mu_0  -85}{\sigma / \sqrt{9}} \geq 1.28 \right]\\
+	&= P_{\mu = 85} \left[\frac{\overline{X} -85}{\sigma / \sqrt{9}}  \geq 0.28 \right]\\
+	&= 1 - \Phi(0.28) \approx 38.97\%;
+\end{align*}
+
+\textbf{Kommentar: } Mit $\frac{\overline{X} -85}{\sigma / \sqrt{9}} - \frac{\mu_0  -85}{\sigma / \sqrt{9}}$ verschieben wir die Verteilung wie gewollt, so dass sie nun über $\mu_2$ zentriert ist. Der Fehler 2ter Art ist (1 - Macht) oder $P_\theta [T\not \in K]$
 
 \begin{thm}{Neyman-Pearson-Lemma}
 	Wenn $\Theta_0 = \{\vartheta_0\}$, $\Theta_A = \{\vartheta_A\}$, $K = [0,c)$ sowie $\alpha^*= P_{\vartheta_0}[T\in K] = P_{\vartheta_0}[T < c]$.
