@@ -260,7 +260,7 @@ Seien $A, B$ Ereignisse und $P[A] > 0$. Die bedingte Wahrscheinlichkeit von $B$ 
 \end{thm}
 
 
-\begin{thm}{Bayes Theorem}
+\begin{thm}{Satz von Bayes}
 	Wenn $P[A],P[B].P[B^c]> 0$ so folgt:
 	
 	\begin{align*}
@@ -443,6 +443,7 @@ Wir betrachten eine unendliche Folge von unabhängigen 0-1 Experimenten mit Erfo
 	\E[X] &= \frac{1}{p} & \Var[X] &= \frac{1-p}{p^2}
 \end{align*}
 
+Für die geometrische Verteilung gilt auch eine Art Gedächtnislosigkeit: $P[X = n+k | X \geq n ] = P[X = k]$.
 
 \subsubsection*{Negativbinomiale Verteilung}
 Wir betrachten eine unendliche Folge von unabhängigen 0-1 Experimenten mit Erfolgsparameter $p$. So sei $X$ die Wartezeit auf den $r$-ten Erfolg. Wir schreiben $X\sim \operatorname{NB(r,p)}$.
@@ -537,7 +538,6 @@ Umgekehrt kann man aus einer messbaren Funktion $f:\R\to[0,\infty)$ mit $\int_{-
 		\item $\int_{-\infty}^{\infty}\cdots \int_{-\infty}^{\infty}f(t_1,\ldots,t_n)dt_n\ldots dt_1 = 1$
 		\item $P[(X_1,\ldots X_n)\in A] = \int_{(x_1,\ldots,x_n)\in A}f(t_1,\ldots,t_n)dt_n\ldots dt_1$
 	\end{itemize} 
-	TODO: muss ich das dritte Prüfen?
 \end{method}
 
 \begin{method}{Randverteilung} Haben $X,Y$ die gemeinsame Dichtefunktion $F$, so ist die Funktion $F_X : \R \to [0,1]$ mit 
@@ -668,8 +668,9 @@ f_X(t) &= \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(t-\mu)^2}{2\sigma^2}}
 \end{align*}
 
 Problem: Das Integral ist mühsam. Trick Wir plotten die Dichte $\varphi(t)$ sowie Verteilfunktion $\Phi(t)$ von $\Nor(0,1)$ und benutzen dass $\frac{X-\mu}{\sigma} \sim \Nor(0,1)$.
-
-Es gilt $\Phi(-x) = 1 - \Phi(x)$ sowie ${\Phi^{-1}(x) = -\Phi^{-1}(1-x)}$
+\begin{mdframed}
+	Es gilt $\Phi(-x) = 1 - \Phi(x)$ sowie ${\Phi^{-1}(x) = -\Phi^{-1}(1-x)}$
+\end{mdframed}
 
 
 Zudem gilt für $X\sim N(\mu_X,\sigma^2_X)$, $Y \sim N(\mu_Y, \sigma^2_Y)$ mit $Z=X+Y$ dass $Z \sim N(\mu_X+\mu_Y, \sigma^2_X + \sigma^2_Y)$.
@@ -703,6 +704,19 @@ x_0 \frac{\alpha}{\alpha - 1}\ \text{ für } \alpha > 1 \\
 \end{align*}
 
 Diese Verteilung modelliert zum Beispiel die Krankenkosten eines Versicherten pro Jahr.
+
+
+\subsubsection*{Bekannte Verteilungen}
+\begin{align*}
+X_i \overset{iid}{\sim} \mc N(\mu, \sigma^2) \; \Rightarrow & \; S_n \sim \mc N(n \cdot \mu, n \cdot \sigma^2)
+\end{align*}
+\subsubsection*{Erwartungswerte und Varianzen}
+\begin{align*}
+\E(S_n) &= n \cdot \E(X_1) & \E(\overline{X}_n) &= \E(X_1) \\
+\Var(S_n) &= n \cdot \Var(X_1) & \Var(\overline{X}_n) &= \tfrac{1}{n} \Var(X_1) \\
+\sigma_{S_n} &= \sqrt{n} \cdot \sigma_{X_1} & \sigma_{\overline{X}_n} &= \tfrac{1}{\sqrt{n}} \cdot \sigma_{X_1}
+\end{align*}
+
 
 
 \section{Kennzahlen von Zufallsvariablen}
@@ -854,6 +868,13 @@ Y = aX+b \quad &\implies \quad f_Y(x) = \tfrac{1}{|a|} f_X\left(\tfrac{x-b}{|a|}
 	{unabhängig $\implies$ paarweise unabhängig $\implies$ unkorreliert}
 \end{mdframed}
 
+\textbf{Beispiel Unkorreliert aber nicht unabhängig:}
+
+Sei $X\sim \mathcal{N}(0,1)$ und $Y = X^2$. Dann gilt $\E[XY] = \E[X^3] = 0 = \E[X]\E[Y]$. Somit sind $X,Y$ unkorreliert $\rightarrow$ offensichtlich aber nicht unabhängig.
+
+
+
+
 
 \begin{thm}{Transformation von Zufallsvariablen}
 	Sei $X$ eine Zufallsvariable und $Y=g(X)$ eine weitere. Ist $X$ stetig mit Dichte $f_X(x)$ so ist:
@@ -881,7 +902,7 @@ Die Verteilungen von $S_n$ und $\overline X_n$ sind im allgemeinen aber schwieri
 
 \subsubsection*{Bekannte Verteilungen}
 \begin{align*}
-%X_i \overset{iid}{\sim} \operatorname{Exponential}(\lambda) \; \Rightarrow & \; S_n \sim \operatorname{Exponential}(n\cdot \lambda) \\
+X_i \overset{iid}{\sim} \operatorname{Exponential}(\lambda) \; \Rightarrow & \; S_n \sim \operatorname{Exponential}(n\cdot \lambda) \\
 X_i \overset{iid}{\sim} \operatorname{Poisson}(\lambda_i) \; \Rightarrow & \; S_n \sim \operatorname{Poisson}({\textstyle \sum \lambda_i}) \\
 X_i \overset{iid}{\sim} \operatorname{Bernoulli}(p) \; \Rightarrow & \; S_n \sim \operatorname{Binomial}(n,p)\\
 X_i \overset{iid}{\sim} \mc N(\mu, \sigma^2) \; \Rightarrow & \; S_n \sim \mc N(n \cdot \mu, n \cdot \sigma^2)
@@ -962,10 +983,10 @@ Zusammengefasst: Beim schwachen ist die Chance von Nichtkonvergenz sehr klein, b
 
 
 \begin{method}{Zentraler Grenzwertsatz}
-	Sei $X_1,X_2,\ldots$ eine Folge von \textit{i.i.d Zufallsvariablen (independent and identically distributed random variables)} mit $\E[X_i] = \mu$ und $\Var[X_i] = \sigma^2$. Für die Summe $S_n = \sum_{i=1}^{n} X_i$ gilt dann:
+	Sei $X_1,X_2,\ldots$ eine Folge von \textit{i.i.d Zufallsvariablen (independent and identically distributed random variables)} mit $\E[X_i] = \mu$ und $\Var[X_i] = \sigma^2$. Für die Summe $S_n = \sum_{i=1}^{n} X_i$, respektive $\overline {X}_{n}={\frac  {X_{1}+\cdots +X_{n}}n}$ gilt dann:
 	
 	\begin{align*}
-		\lim\limits_{n \to \infty} P\left[ \frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x\right] = \Phi(x)
+		\lim\limits_{n \to \infty} P\left[ \frac{S_n - n\mu}{\sigma \sqrt{n}} \leq x\right] = \lim _{{n\rightarrow \infty }}P\left[{\frac  {\overline {X}_{n}-\mu }{\sigma /{\sqrt  {n}}}}\leq x\right]= \Phi(x)
 	\end{align*}
 
 	Wobei $\Phi$ die Verteilungsfunktion von $\mathcal{N}(0,1)$ ist.	
@@ -1034,6 +1055,7 @@ Alternativ gibt es auch folgende Abschätzungen: (nicht im Skript!)
 	P[X \geq (1+\delta)\mu] &\leq e^{-\frac{\delta^2}{2+\delta}\mu} \ \text{ für alle } \delta > 0  \\
 	P[X \leq (1-\delta)\mu] &\leq e^{-\mu\delta^2/2} \ \text{ für } 0 < \delta < 1
 \end{align*}
+
 
 
 \part{Statistik}
@@ -1637,7 +1659,7 @@ Mithilfe quadratischer Ergänzung auf einen der folgenden Fälle zurückführen,
 	\end{align*}
 	\textbf{Surjektiv}
 	\begin{align*}
-	\forall y \in N \exists x \in M : y = f(x)
+	\forall y \in N  \ \exists x \in M : y = f(x)
 	\end{align*}
 \end{method}
 
