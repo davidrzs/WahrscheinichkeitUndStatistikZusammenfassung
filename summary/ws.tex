@@ -569,6 +569,16 @@ Umgekehrt kann man aus einer messbaren Funktion $f:\R\to[0,\infty)$ mit $\int_{-
 \end{itemize}
 
 
+\begin{thm}{Wahrscheinlichkeiten mehrerer Variablen}
+Angenommen wir möchten $P[X > 2Y]$ ausrechnen so berechnen wir:
+
+\begin{align*}
+	P[X>2Y] &= \int \int_A f_{X,Y} (x,y) dx dy
+\end{align*}
+
+Mit $A = \{(x,y)\in\R^2 : x > 2y\}$
+\end{thm}
+
 
 
 \begin{method}{Unabhängigkeit von Zufallsvariablen} Die Zufallsvariablen $X_1,\ldots, X_n$ heissen unabhängig, falls gilt
@@ -750,6 +760,32 @@ X_i \overset{iid}{\sim} \mc N(\mu, \sigma^2) \; \Rightarrow & \; S_n \sim \mc N(
 
 \end{method}
 
+\begin{method}{Bedingte Erwartung}
+	Die Erwartung von $Y$ gegeben, dass $X=x$ bereits eingetroffen ist, ist definiert durch:
+	\begin{align*}
+	\E[Y|X=x] &= \sum _{y}yP(Y=y\mid X=x)=\sum _{y}y{\frac {P(X=x,Y=y)}{P(X=x)}}\\
+	\E[Y|X=x] &= \int y\cdot  f_{Y|X=x}(y)\  dy = \int y\cdot  \frac{f_{X,Y}(x,y)}{f_{X=x}(y)} \ dy
+	\end{align*}
+\end{method}
+
+
+\textbf{Beispiel (nicht konvergenter Erwartungswert):}
+Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
+
+\begin{align*}
+f_X(t) &= \frac{1}{\pi} \frac{1}{1+t^2}
+& 
+F_X(t) &= \frac{1}{2} + \frac{1}{\pi}\arctan(t)
+\end{align*}
+
+Dann gilt:
+
+\begin{align*}
+\int_{-\infty}^\infty |x|f_X(x) dx &= \lim\limits_{b\to\infty} \frac{1}{\pi}\log(1+b^2) = +\infty
+\end{align*}
+
+
+
 
 \begin{method}{Varianz}
 \begin{itemize}
@@ -782,24 +818,6 @@ Für unkorrelierte Zufallsvariablen $X_i$ gilt
 	
 \end{itemize}
 \end{method}
-
-
-\textbf{Beispiel (nicht konvergenter Erwartungswert):}
-Sei $X$ eine Cauchy-verteilte Zufallsvariable, mit $\W(X) = \R$ und
-
-\begin{align*}
-f_X(t) &= \frac{1}{\pi} \frac{1}{1+t^2}
-& 
-F_X(t) &= \frac{1}{2} + \frac{1}{\pi}\arctan(t)
-\end{align*}
-
-Dann gilt:
-
-\begin{align*}
-\int_{-\infty}^\infty |x|f_X(x) dx &= \lim\limits_{b\to\infty} \frac{1}{\pi}\log(1+b^2) = +\infty
-\end{align*}
-
-
 
 
 
