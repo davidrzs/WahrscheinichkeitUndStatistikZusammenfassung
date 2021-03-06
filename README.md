@@ -10,3 +10,7 @@ In diesem GIT-Repository ist meine Zusammenfassung, welche ich an die Prüfung n
 
 ## Lizenz
 Der gesamte Code dieses Repositories ist unter der [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) Lizenz lizensiert.
+
+
+## Beitragen
+Bei Fehlern oder Verbesserungen wäre ich sehr froh wenn diese per Fork & Merge oder per Issue korrigiert werden könnten. Dies verbessert die Qualität der Zusammenfassung! Gerne kann ich auch per Email kontaktiert werden.
